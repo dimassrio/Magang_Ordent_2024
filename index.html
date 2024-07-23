@@ -3,280 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiket Go</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.11.8/dist/css/coreui.min.css" rel="stylesheet">
-    <style>
-        .card img {
-            height: 150px;
-            object-fit: cover;
-        }
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .card-title {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .footer {
-            background-color: #f8f9fa;
-            padding: 40px 0;
-            border-top: 1px solid #dee2e6;
-        }
-        .footer h5 {
-            font-weight: bold;
-        }
-        .footer p, .footer a {
-            color: #000;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .footer .social-icons a {
-            margin-right: 15px;
-            font-size: 24px;
-        }
-    </style>
+    <title>GOERS - Beli Tiket Online</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row bg-white border-bottom py-2">
-            <div class="col d-flex align-items-center">
-                <a href="Tiket Go.html">
-                    <img src="img/GOERS.png" alt="Goers Logo" class="me-3" style="height: 40px;">
-                </a>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Menu
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Home</a></li>
-                        <li><a class="dropdown-item" href="#">Events</a></li>
-                        <li><a class="dropdown-item" href="#">About Us</a></li>
-                    </ul>
-                </div>
-                <input type="text" class="form-control ms-3" placeholder="Cari acara, taman rekreasi, dll..." style="max-width: 300px;">
-                <div class="ms-auto">
-                    <a href="#" class="btn btn-outline-success me-2">Buat Pengalaman</a>
-                    <a href="#" class="btn btn-outline-primary">Masuk</a>
-                </div>
-            </div>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/logoG.png" alt="GOERS"></a>
         </div>
-        <div class="row">
-            <div class="col-12 p-0">
-                <img src="img/Banner.jpg" alt="Banner" class="img-fluid w-100">
+            <div class="search-bar">
+                <input type="text" placeholder="Cari acara, taman rekreasi, dll...">
+                    <i class="fas fa-search"></i>
             </div>
+        <div class="header-right">
+            <button class="btn-pengalaman">Buat Pengalaman</button>
+            <button class="btn-masuk">Masuk</button>
         </div>
-        <div class="row mt-4">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <h2>Best Offers</h2>
-                <a href="#" class="btn btn-success">Lihat Semua</a>
-            </div>
-            <div class="cards">
-                <a href="#" class="card col-md-2">
-                    <img src="img/Dept Live Jakarta.jpg" alt="Dept Live Jakarta" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>Dept Live in Jakarta 2024</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 840K</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Soundshock.jpg" alt="Soundshock" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>SOUNDSHOCK</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 149K</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Bang Yedam.jpg" alt="Bang Yedam" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>BANG YEDAM 1ST FAN</span>
-                            <br>
-                            <span>MEETING IN JAKARTA</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 900K</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Makrab Suci.jpg" alt="Makrab Suci" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>MaKrab KAMPUS SUCI</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">IDR 249K</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Puri Nirwana.jpeg" alt="Puri Nirwana" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>Puri Nirwana</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 195K</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <h2>Jalan-jalan untuk satu circle paling seru</h2>
-                <a href="#" class="btn btn-success">Lihat Semua</a>
-            </div>
-            <div class="cards">
-                <a href="#" class="card col-md-2">
-                    <img src="img/Krakatau park.jpg" alt="Krakatau Park" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>Krakatau Park</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 60K</p>
-                        <p class="card-text text-danger">Diskon s/d 68%</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Theatrical Audio.jpg" alt="Theatrical Audio" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>12AM Indonesia - 360°</span>
-                            <br>
-                            <span>Theatrical Audio Experience</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 119K</p>
-                        <p class="card-text text-danger">Diskon s/d 8%</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Bounce Street.jpg" alt="Bounce Street" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>Bounce Street Asia</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 20K</p>
-                        <p class="card-text text-danger">Diskon s/d 22%</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Bucketlist.jpg" alt="Bucketlist" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>The Bucketlist</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 30K</p>
-                        <p class="card-text text-danger">Diskon s/d 33%</p>
-                    </div>
-                </a>
-                <a href="#" class="card col-md-2">
-                    <img src="img/Go wet waterpark.webp" alt="Go Wet Waterpark" class="card-img-top">
-                    <div class="card-body">
-                        <span>
-                            <span>Go! Wet Waterpark</span>
-                        </span>
-                        <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span>
-                        <p class="card-text">Dari IDR 70K</p>
-                        <p class="card-text text-danger">Diskon s/d 68%</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+    </header>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h5>MENGGUNAKAN TIKET GO</h5>
-                    <ul class="list-unstyled">
-                        <li>Penawaran Terbaik</li>
-                        <li>Lokasi Terbaik</li>
-                        <li>Promo</li>
-                        <li>Pusat Bantuan</li>
-                        <li>Kebijakan Privasi</li>
-                        <li>Syarat dan Ketentuan</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>INFORMASI</h5>
-                    <ul class="list-unstyled">
-                        <li>Menayangkan Event di Tiket Go</li>
-                        <li>Solusi Pemilik Venue</li>
-                        <li>Unduh Brosur</li>
-                        <li>Goers Experience Manager</li>
-                        <li>Point of Sales</li>
-                        <li>Ticket Scanner</li>
-                        <li>Harga</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>BISNIS</h5>
-                    <ul class="list-unstyled">
-                        <li>Solusi New Normal</li>
-                        <li>Managemen Online Event</li>
-                        <li>Venue & Event Olahraga</li>
-                        <li>Taman Bertema</li>
-                        <li>Tur & Wisata</li>
-                        <li>Pameran</li>
-                        <li>Konser & Musik</li>
-                        <li>Seminar</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>BERTEMU TIKET GO</h5>
-                    <ul class="list-unstyled">
-                        <li>Tentang Kami</li>
-                        <li>Blog</li>
-                        <li>Karir</li>
-                        <li>Press Kit</li>
-                    </ul>
+    <nav>
+        <div class="nav-left">
+            <div class="dropdown">
+                <button class="dropbtn">Pilih Kota Anda</button>
+                <div class="dropdown-content">
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="d-flex align-items-center">
-                        <span>Dapatkan kabar terakhir dari kami</span>
+            <div class="dropdown">
+                <button class="dropbtn">Kategori</button>
+                <div class="dropdown-content">
+                    <a href="#">Edukasi & Karier</a>
+                    <a href="#">Hiburan & Pertunjukan</a>
+                    <a href="#">Travel & Outdoor</a>
+                    <a href="#">Amal</a>
+                    <a href="#">Olahraga</a>
+                    <a href="#">Tempat Wisata</a>
+                    <a href="#">Belanja</a>
+                    <a href="#">Seni & Belanja</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="#">Blog</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Kerjasama Dengan Kami</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="banner">
+            <img src="img/f1.jpg" alt="Destinasi liburan">
+                <div class="banner-nav"></div>
+        </section>
+        
+        <section class="best-offers">
+            <div class="section-header">
+                <h2>Best Offers</h2>
+                    <a href="event.html" class="view-all">Lihat Semua</a>
+            </div>
+            <div class="event-list">
+                <a href="event.html" class="event-card">
+                    <img src="img/a.jpg" alt="Dept Live in Jakarta 2024">
+                        <h3>Dept Live in Jakarta 2024</h3>
+                            <b>Dari IDR 840K</b>
+                </a>
+                <a href="event.html" class="event-card">
+                    <img src="img/b.jpg" alt="SOUNDSHOCK">
+                        <h3>SOUNDSHOCK</h3>
+                            <b>Dari IDR 149K</b>
+                </a>
+                <a href="event.html" class="event-card">
+                    <img src="img/c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
+                        <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                            <b>Dari IDR 900K</b>
+                </a>
+                <a href="event.html" class="event-card">
+                    <img src="img/d.jpg" alt="The Papandayan Jazz Fest 2024">
+                        <h3>The Papandayan Jazz Fest 2024</h3>
+                            <b>Dari IDR 195K</b>
+                </a>
+                <a href="event.html" class="event-card">
+                    <img src="img/e.jpg" alt="MaKrab KAMPUS SUCI">
+                        <h3>MaKrab KAMPUS SUCI</h3>
+                            <b>IDR 249K</b>
+                </a>
+            </div>  
+<br></br>
+            <div class="section-header">
+                    <h2>Jalan Jalan Untuk Satu Circle Paling Seru</h2>
+                        <a href="event.html" class="view-all">Lihat Semua</a>
+                           
+            </div>
+                <div class="event-list">
+                    <a href="event.html" class="event-card">
+                        <img src="img/aa.jpg" alt="Dept Live in Jakarta 2024">
+                            <h3>Dept Live in Jakarta 2024</h3>
+                                <p>Dari IDR 840K</p>
+                                    <b>Diskon s/d 68%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/bb.jpg" alt="SOUNDSHOCK">
+                            <h3>SOUNDSHOCK</h3>
+                                <p>Dari IDR 149K</p>
+                                    <b>Diskon s/d 8%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/cc.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
+                            <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                <p>Dari IDR 900K</p>
+                                    <b>Diskon s/d 22%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/dd.jpg" alt="The Papandayan Jazz Fest 2024">
+                            <h3>The Papandayan Jazz Fest 2024</h3>
+                                <p>Dari IDR 195K</p>
+                                    <b>Diskon s/d 33%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/ee.webp" alt="MaKrab KAMPUS SUCI">
+                            <h3>MaKrab KAMPUS SUCI</h3>
+                                <p>IDR 249K</p>
+                                    <b>Diskon s/d 68%</b>
+                    </a>
+                </div>
+<br></br>
+            <div class="section-header">
+                    <h2>Attractions</h2>
+                        <a href="event.html" class="view-all">Lihat Semua</a>
+            </div>
+                <div class="event-list">
+                    <a href="event.html" class="event-card">
+                        <img src="img/3a.png" alt="Dept Live in Jakarta 2024">
+                            <p>Dept Live in Jakarta 2024</h3>
+                                <p>Dari IDR 840K</p>
+                                    <b>Diskon s/d 8%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/3b.jpg" alt="SOUNDSHOCK">
+                            <h3>SOUNDSHOCK</h3>
+                                <p>Dari IDR 149K</p>
+                                    <b>Diskon s/d 60%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/3c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
+                            <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                <p>Dari IDR 900K</p>
+                                    <b>Diskon s/d 29%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/3d.jpg" alt="The Papandayan Jazz Fest 2024">
+                            <h3>The Papandayan Jazz Fest 2024</h3>
+                                <p>Dari IDR 195K</p>
+                                    <b>Diskon s/d 33%</b>
+                    </a>
+                    <a href="event.html" class="event-card">
+                        <img src="img/3e.jpg" alt="MaKrab KAMPUS SUCI">
+                            <h3>MaKrab KAMPUS SUCI</h3>
+                                <p>IDR 249K</p>
+                                    <b>Diskon s/d 50%</b>
+                    </a>
+                </div>
+<br></br>
+                <div class="section-header">
+                        <h2>Lates On Goers</h2>
+                            <a href="event.html" class="view-all">Lihat Semua</a>
+                </div>
+                    <div class="event-list">
+                        <a href="event.html" class="event-card">
+                            <img src="img/4a.png" alt="Dept Live in Jakarta 2024">
+                                <h3>Dept Live in Jakarta 2024</h3>
+                                    <b>Dari IDR 840K</b>
+                        </a>
+                        <a href="event.html" class="event-card">
+                            <img src="img/4b.jpg" alt="SOUNDSHOCK">
+                                <h3>SOUNDSHOCK</h3>
+                                    <b>Dari IDR 149K</b>
+                        </a>
+                        <a href="event.html" class="event-card">
+                            <img src="img/4c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
+                                <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                    <b>Dari IDR 900K</b>
+                        </a>
+                        <a href="event.html" class="event-card">
+                            <img src="img/4d.jpeg" alt="The Papandayan Jazz Fest 2024">
+                                <h3>The Papandayan Jazz Fest 2024</h3>
+                                    <b>Dari IDR 195K</b>
+                        </a>
+                        <a href="event.html" class="event-card">
+                            <img src="img/4e.jpeg" alt="MaKrab KAMPUS SUCI">
+                                <h3>MaKrab KAMPUS SUCI</h3>
+                                    <b>IDR 249K</b>
+                        </a>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <form class="d-flex">
-                        <input type="email" class="form-control me-2" placeholder="Alamat email">
-                        <button class="btn btn-primary" type="submit">Berlangganan</button>
-                    </form>
-                </div>
+        </section>
+<br></br>
+
+        <section class="banner">
+            <img src="img/f2.jpg" alt="Destinasi liburan">
+                <div class="banner-nav"></div>
+        </section>
+<br>/<br>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>MENGGUNAKAN GOERS</h3>
+                <ul>
+                    <li>Penawaran Terbaik</li>
+                    <li>Lokasi Terbaik</li>
+                    <li>Promo</li>
+                    <li>Pusat Bantuan</li>
+                    <li>Kebijakan Privasi</li>
+                    <li>Syarat dan Ketentuan</li>
+                </ul>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <p>Layanan Pelanggan (WA): +6281110588333</p>
-                    <p>Kantor Goers: Graha Krama Yudha Lt. 4 Unit B, Jalan Haji Tutty Alawiyah No. 43, Jakarta Selatan 12760</p>
-                    <p>Jam Kerja: Hari Kerja @ 09.00 - 20.00</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p>Tiket Go © 2021. All Rights Reserved.</p>
-                    <p>Version 4.6.0</p>
-                </div>
+            <div class="footer-column">
+                <h3>INFORMASI</h3>
+                <ul>
+                    <li>Menayangkan Event di Goers</li>
+                    <li>Solusi Pemilik Venue</li>
+                    <li>Unduh Brosur</li>
+                    <li>Goers Experience Manager</li>
+                    <li>Point of Sales</li>
+                    <li>Ticket Scanner</li>
+                    <li>Harga</li>
+                </ul>
             </div>
+            <div class="footer-column">
+                <h3>BISNIS</h3>
+                <ul>
+                    <li>Solusi New Normal</li>
+                    <li>Managemen Online Event</li>
+                    <li>Venue & Event Olahraga</li>
+                    <li>Taman Bertema</li>
+                    <li>Tur & Wisata</li>
+                    <li>Pameran</li>
+                    <li>Konser & Musik</li>
+                    <li>Seminar</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>BERTEMU GOERS</h3>
+                <ul>
+                    <li>Tentang Kami</li>
+                    <li>Blog</li>
+                    <li>Karir</li>
+                    <li>Press Kit</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Layanan Pelanggan (WA):</h3>
+                <p>+6281110583333</p>
+                <h3>Kantor Goers:</h3>
+                <p>Graha Krama Yudha Lt. 4 Unit B<br>Jalan Haji Tutty Alawiyah No. 43<br>Jakarta Selatan 12760</p>
+                <h3>Jam Kerja:</h3>
+                <p>Hari Kerja @ 09.00 - 20.00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-media">
+                <a href="#"><img src="img/Ig.svg" alt="Instagram"></a>
+                <a href="#"><img src="img/fb.svg" alt="Facebook"></a>
+                <a href="#"><img src="img/x.svg" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <p>Dapatkan kabar terakhir dari kami</p>
+                <input type="email" placeholder="Alamat email">
+                <button>Berlangganan</button>
+            </div>
+        </div>
+        <div class="footer-credits">
+            <p>Goers © 2021. All Rights Reserved.</p>
+            <p>Version 4.6.0</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
+
+        
 </html>
