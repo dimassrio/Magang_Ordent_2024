@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOERS - Beli Tiket Online</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/logoG.png" alt="GOERS"></a>
+        </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Cari acara, taman rekreasi, dll...">
+                    <i class="fas fa-search"></i>
+            </div>
+        <div class="header-right">
+            <button class="btn-pengalaman">Buat Pengalaman</button>
+            <button class="btn-masuk">Masuk</button>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-left">
+            <div class="dropdown">
+                <button class="dropbtn">Pilih Kota Anda</button>
+                <div class="dropdown-content">
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Kategori</button>
+                <div class="dropdown-content">
+                    <a href="#">Edukasi & Karier</a>
+                    <a href="#">Hiburan & Pertunjukan</a>
+                    <a href="#">Travel & Outdoor</a>
+                    <a href="#">Amal</a>
+                    <a href="#">Olahraga</a>
+                    <a href="#">Tempat Wisata</a>
+                    <a href="#">Belanja</a>
+                    <a href="#">Seni & Belanja</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="#">Blog</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Kerjasama Dengan Kami</a>
+        </div>
+    </nav>
+    <div class="register-container">
+        <h2>Daftar</h2>
+        <p>Silakan masukkan detail Anda untuk membuat akun.</p>
+        <form action="/register" method="POST">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Alamat Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Daftar</button>
+        </form>
+        <p class="login-text">Sudah punya akun? <a href="login.html" class="login-link">Klik disini</a> untuk masuk!</p>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>MENGGUNAKAN GOERS</h3>
+                <ul>
+                    <li>Penawaran Terbaik</li>
+                    <li>Lokasi Terbaik</li>
+                    <li>Promo</li>
+                    <li>Pusat Bantuan</li>
+                    <li>Kebijakan Privasi</li>
+                    <li>Syarat dan Ketentuan</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>INFORMASI</h3>
+                <ul>
+                    <li>Menayangkan Event di Goers</li>
+                    <li>Solusi Pemilik Venue</li>
+                    <li>Unduh Brosur</li>
+                    <li>Goers Experience Manager</li>
+                    <li>Point of Sales</li>
+                    <li>Ticket Scanner</li>
+                    <li>Harga</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>BISNIS</h3>
+                <ul>
+                    <li>Solusi New Normal</li>
+                    <li>Managemen Online Event</li>
+                    <li>Venue & Event Olahraga</li>
+                    <li>Taman Bertema</li>
+                    <li>Tur & Wisata</li>
+                    <li>Pameran</li>
+                    <li>Konser & Musik</li>
+                    <li>Seminar</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>BERTEMU GOERS</h3>
+                <ul>
+                    <li>Tentang Kami</li>
+                    <li>Blog</li>
+                    <li>Karir</li>
+                    <li>Press Kit</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Layanan Pelanggan (WA):</h3>
+                <p>+6281110583333</p>
+                <h3>Kantor Goers:</h3>
+                <p>Graha Krama Yudha Lt. 4 Unit B<br>Jalan Haji Tutty Alawiyah No. 43<br>Jakarta Selatan 12760</p>
+                <h3>Jam Kerja:</h3>
+                <p>Hari Kerja @ 09.00 - 20.00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-media">
+                <a href="#"><img src="img/Ig.svg" alt="Instagram"></a>
+                <a href="#"><img src="img/fb.svg" alt="Facebook"></a>
+                <a href="#"><img src="img/x.svg" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <p>Dapatkan kabar terakhir dari kami</p>
+                <input type="email" placeholder="Alamat email">
+                <button>Berlangganan</button>
+            </div>
+        </div>
+        <div class="footer-credits">
+            <p>Goers © 2021. All Rights Reserved.</p>
+            <p>Version 4.6.0</p>
+        </div>
+    </footer>
+</body>
+</html>
