@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #fff;
 }
 
 header {
@@ -18,6 +18,10 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.nav-right {
+    font-weight: bold;
+}
+
 .login-container {
     background-color: #fff;
     padding: 40px;
@@ -26,10 +30,18 @@ header {
     width: 400px;
     text-align: center;
     margin:0 auto;
+    border: none;
+    box-shadow: none;
 }
 
 .login-container h2 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.intro-text {
+    text-align: left;
+    margin: 0 auto 20 px auto;
+    max-width: 100%;
 }
 
 .login-container p {
@@ -40,6 +52,8 @@ header {
 .input-group {
     margin-bottom: 20px;
     text-align: left;
+    color: #555;
+    font-weight: bold
 }
 
 .input-group label {
@@ -51,8 +65,9 @@ header {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
 }
 
 .btn-primary {
@@ -64,6 +79,7 @@ header {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -72,7 +88,7 @@ header {
 
 .separator {
     margin: 20px 0;
-    color: #aaa;
+    color: #000;
 }
 
 .btn-google, .btn-apple {
@@ -82,6 +98,7 @@ header {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .btn-google {
@@ -135,6 +152,7 @@ header {
     padding: 10px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-help:hover {
@@ -263,7 +281,7 @@ nav {
     font-size: 24px;
 }
 footer {
-    background-color: #f8f8f8;
+    background-color: #fff;
     padding: 20px 0;
     color: #333;
 }

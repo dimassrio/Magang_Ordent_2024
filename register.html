@@ -17,7 +17,7 @@
             </div>
         <div class="header-right">
             <button class="btn-pengalaman">Buat Pengalaman</button>
-            <button class="btn-masuk">Masuk</button>
+            <a href="login.html"><button class="btn-masuk">Masuk</button></a>
         </div>
     </header>
 
@@ -49,25 +49,26 @@
         </div>
     </nav>
     <div class="register-container">
-        <h2>Daftar</h2>
-        <p>Silakan masukkan detail Anda untuk membuat akun.</p>
+        <h2 class="intro-text">Daftar</h2>
+        <p class="intro-text">Silakan masukkan username, email, dan password Anda untuk membuat akun.</p>
         <form action="/register" method="POST">
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username" class="guide">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Masukkan username anda...">
             </div>
             <div class="input-group">
-                <label for="email">Alamat Email</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email" class="guide">Alamat Email</label>
+                <input type="email" id="email" name="email" required placeholder="Masukkan email anda...">
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password" class="guide">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Masukkan password anda...">
             </div>
             <button type="submit" class="btn-primary">Daftar</button>
         </form>
         <p class="login-text">Sudah punya akun? <a href="login.html" class="login-link">Klik disini</a> untuk masuk!</p>
     </div>
+    <hr>
     <footer>
         <div class="footer-container">
             <div class="footer-column">

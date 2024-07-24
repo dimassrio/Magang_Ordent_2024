@@ -14,7 +14,7 @@ nav {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #fff;
 }
 
 header {
@@ -71,6 +71,10 @@ nav {
     padding: 10px 20px;
     background-color: #fff;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-right {
+    font-weight: bold;
 }
 
 .dropdown {
@@ -136,8 +140,19 @@ nav {
     width: 400px;
     text-align: center;
     margin:0 auto;
+    border: none;
+    box-shadow: none;
 }
 
+.intro-text {
+    text-align: left;
+    margin: 0 auto 20px auto;
+    max-width: 100%;
+}
+.guide {
+    font-weight: bold;
+    color: #555;
+}
 .register-container h2 {
     margin-bottom: 10px;
 }
@@ -161,8 +176,11 @@ nav {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px #ccc;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    outline: none;
+
 }
 
 .btn-primary {
@@ -174,6 +192,7 @@ nav {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -183,6 +202,7 @@ nav {
 .login-text {
     margin-bottom: 20px;
     color: #555;
+    font-weight: normal;
 }
 
 .login-link {
@@ -269,7 +289,7 @@ nav {
     font-size: 24px;
 }
 footer {
-    background-color: #f8f8f8;
+    background-color: #fff;
     padding: 20px 0;
     color: #333;
 }
