@@ -1,284 +1,283 @@
 <!DOCTYPE html>
 <html lang="id">
-    <!-- <div class="mark"> -->
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>GOERS - Beli Tiket Online</title>
+            <script src="https://cdn.tailwindcss.com"></script>
             <link rel="stylesheet" href="styles.css">
         </head>
-        <body>
-            <header>
+        <body class="font-family: Arial, sans-serif background-color: #f8f9fa;">
+            <header class="flex justify-between items-center p-4 bg-white shadow-md">
                 <div class="logo">
-                    <a href="index.html"><img src="img/logoG.png" alt="GOERS"></a>
+                    <a href="index.html"><img src="img/logoG.png" alt="GOERS" class="h-8"></a>
                 </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Cari acara, taman rekreasi, dll...">
+                    <div class="search-bar flex items-center bg-gray-200 rounded-full px-4 w-1/2">
+                        <input  class="bg-transparent w-full p-2" type="text" placeholder="Cari acara, taman rekreasi, dll...">
                             <i class="fas fa-search"></i>
                     </div>
-                <div class="header-right">
-                    <button class="btn-pengalaman">Buat Pengalaman</button>
-                    <a href="login.html"><button class="btn-masuk">Masuk</button></a>
+                <div class="header-right flex items-center">
+                    <button class="btn-pengalaman bg-white  font-bold py-1 px-4 rounded mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700 font-bold rounded-lg">Buat Pengalaman</button>
+                    <a href="login.html"><button class="btn-masuk bg-green-500 text-white font-bold py-1 px-3 rounded">Masuk</button></a>
                 </div>
             </header>
         
-            <nav>
-                <div class="nav-left">
-                    <div class="dropdown">
-                        <button class="dropbtn">Pilih Kota Anda</button>
-                        <div class="dropdown-content">
+            <nav class="flex justify-between p-4 bg-white shadow mt-2 border-gray-200"> 
+                <div class="nav-left flex">
+                    <div class="dropdown relative">
+                        <button class="dropbtn bg-white text-gray-800 py-2 px-4 rounded-full">Pilih Kota Anda</button>
+                        <div class="dropdown-content absolute-hidden bg-white rounded mt-2">
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <button class="dropbtn">Kategori</button>
-                        <div class="dropdown-content">
-                            <a href="#">Edukasi & Karier</a>
-                            <a href="#">Hiburan & Pertunjukan</a>
-                            <a href="#">Travel & Outdoor</a>
-                            <a href="#">Amal</a>
-                            <a href="#">Olahraga</a>
-                            <a href="#">Tempat Wisata</a>
-                            <a href="#">Belanja</a>
-                            <a href="#">Seni & Belanja</a>
+                    <div class="dropdown relative ml-4">
+                        <button class="dropbtn bg-white text-gray-800 py-2 px-4 rounded-full">Kategori</button>
+                        <div class="dropdown-content absolute hidden bg-white shadow-md rounded mt-2">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edukasi & Karier</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Hiburan & Pertunjukan</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Travel & Outdoor</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Amal</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Olahraga</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tempat Wisata</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Belanja</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Seni & Belanja</a>
                         </div>
                     </div>
                 </div>
-                <div class="nav-right">
-                    <a href="#">Blog</a>
-                    <a href="#">Tentang Kami</a>
-                    <a href="#">Kerjasama Dengan Kami</a>
+                <div class="nav-right flex items-center">
+                    <a href="#" class="text-gray-800 ml-4">Blog</a>
+                    <a href="#" class="text-gray-800 ml-4">Tentang Kami</a>
+                    <a href="#" class="text-gray-800 ml-4">Kerjasama Dengan Kami</a>
                 </div>
             </nav>
         
             <main>
-                <section class="banner">
-                    <img src="img/f1.jpg" alt="Destinasi liburan">
-                        <div class="banner-nav"></div>
+                <section class="banner relative">
+                    <img src="img/f1.jpg" alt="Destinasi liburan" class="w-full h-auto object-cover rounded-lg">
+                        <div class="banner-nav absolute bottom-4 left-1/2 transform -translate-x-1/2 flex"></div>
                 </section>
                 
-                <section class="best-offers">
-                    <div class="section-header">
-                        <h2>Best Offers</h2>
-                            <a href="event.html" class="view-all">Lihat Semua</a>
+                <section class="best-offers p-4 bg-white mt-4">
+                    <div class="section-header flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Best Offers</h2>
+                            <a href="event.html" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</a>
                     </div>
-                    <div class="event-list">
-                        <a href="event.html" class="event-card">
-                            <img src="img/a.jpg" alt="Dept Live in Jakarta 2024">
-                                <h3>Dept Live in Jakarta 2024</h3>
-                                    <b>Dari IDR 840K</b>
+                    <div class="event-list flex overflow-x-auto gap-9">
+                        <a href="event.html" class="event-card flex-none w-60">
+                            <img src="img/a.jpg" alt="Dept Live in Jakarta 2024" class="rounded-lg">
+                                <h3 class="text-lg mt-2 px-2">Dept Live in Jakarta 2024</h3>
+                                    <b class="text-black py-1 px-2 rounded">Dari IDR 840K</b>
                         </a>
-                        <a href="event.html" class="event-card">
-                            <img src="img/b.jpg" alt="SOUNDSHOCK">
-                                <h3>SOUNDSHOCK</h3>
-                                    <b>Dari IDR 149K</b>
+                        <a href="event.html" class="event-card flex-none w-60">
+                            <img src="img/b.jpg" alt="SOUNDSHOCK" class="rounded-lg">
+                                <h3 class="text-lg mt-2 px-2">SOUNDSHOCK</h3>
+                                    <b class="text-black py-1 px-2 rounded">Dari IDR 149K</b>
                         </a>
-                        <a href="event.html" class="event-card">
-                            <img src="img/c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
-                                <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
-                                    <b>Dari IDR 900K</b>
+                        <a href="event.html" class="event-card flex-none w-60">
+                            <img src="img/c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA" class="rounded-lg">
+                                <h3 class="text-lg mt-2 px-2">BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                    <b class="text-black py-1 px-2 rounded">Dari IDR 900K</b>
                         </a>
-                        <a href="event.html" class="event-card">
-                            <img src="img/d.jpg" alt="The Papandayan Jazz Fest 2024">
-                                <h3>The Papandayan Jazz Fest 2024</h3>
-                                    <b>Dari IDR 195K</b>
+                        <a href="event.html" class="event-card flex-none w-60">
+                            <img src="img/d.jpg" alt="The Papandayan Jazz Fest 2024" class="rounded-lg">
+                                <h3 class="text-lg mt-2 px-2">The Papandayan Jazz Fest 2024</h3>
+                                    <b class="text-black py-1 px-2 rounded">Dari IDR 195K</b>
                         </a>
-                        <a href="event.html" class="event-card">
-                            <img src="img/e.jpg" alt="MaKrab KAMPUS SUCI">
-                                <h3>MaKrab KAMPUS SUCI</h3>
-                                    <b>IDR 249K</b>
+                        <a href="event.html" class="event-card flex-none w-60">
+                            <img src="img/e.jpg" alt="MaKrab KAMPUS SUCI" class="rounded-lg">
+                                <h3 class="text-lg mt-2 px-2">MaKrab KAMPUS SUCI</h3>
+                                    <b class="text-black py-1 px-2 rounded">IDR 249K</b>
                         </a>
                     </div>  
         <br></br>
-                    <div class="section-header">
-                            <h2>Jalan Jalan Untuk Satu Circle Paling Seru</h2>
-                                <a href="event.html" class="view-all">Lihat Semua</a>
+                    <div class="section-header flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Jalan Jalan Untuk Satu Circle Paling Seru</h2>
+                                <a href="event.html" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</a>
                                    
                     </div>
-                        <div class="event-list">
-                            <a href="event.html" class="event-card">
-                                <img src="img/aa.jpg" alt="Dept Live in Jakarta 2024">
-                                    <h3>Dept Live in Jakarta 2024</h3>
-                                        <p>Dari IDR 840K</p>
-                                            <b>Diskon s/d 68%</b>
+                        <div class="event-list flex overflow-x-auto gap-9">
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/aa.jpg" alt="Dept Live in Jakarta 2024" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">Dept Live in Jakarta 2024</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 840K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 68%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/bb.jpg" alt="SOUNDSHOCK">
-                                    <h3>SOUNDSHOCK</h3>
-                                        <p>Dari IDR 149K</p>
-                                            <b>Diskon s/d 8%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/bb.jpg" alt="SOUNDSHOCK" class="rounded-lg w-64 h-44">
+                                    <h3 class="text-lg mt-2 px-2">SOUNDSHOCK</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 149K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 8%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/cc.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
-                                    <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
-                                        <p>Dari IDR 900K</p>
-                                            <b>Diskon s/d 22%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/cc.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 900K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 22%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/dd.jpg" alt="The Papandayan Jazz Fest 2024">
-                                    <h3>The Papandayan Jazz Fest 2024</h3>
-                                        <p>Dari IDR 195K</p>
-                                            <b>Diskon s/d 33%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/dd.jpg" alt="The Papandayan Jazz Fest 2024" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">The Papandayan Jazz Fest 2024</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 195K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 33%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/ee.webp" alt="MaKrab KAMPUS SUCI">
-                                    <h3>MaKrab KAMPUS SUCI</h3>
-                                        <p>IDR 249K</p>
-                                            <b>Diskon s/d 68%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/ee.webp" alt="MaKrab KAMPUS SUCI" class="rounded-lg h-44">
+                                    <h3 class="text-lg mt-2 px-2">MaKrab KAMPUS SUCI</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">IDR 249K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 68%</b>
                             </a>
                         </div>
         <br></br>
-                    <div class="section-header">
-                            <h2>Attractions</h2>
-                                <a href="event.html" class="view-all">Lihat Semua</a>
+                    <div class="section-header flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Attractions</h2>
+                                <a href="event.html" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</a>
                     </div>
-                        <div class="event-list">
-                            <a href="event.html" class="event-card">
-                                <img src="img/3a.png" alt="Dept Live in Jakarta 2024">
-                                    <p>Dept Live in Jakarta 2024</h3>
-                                        <p>Dari IDR 840K</p>
-                                            <b>Diskon s/d 8%</b>
+                        <div class="event-list flex overflow-x-auto gap-9">
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/3a.png" alt="Dept Live in Jakarta 2024" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">Dept Live in Jakarta 2024</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 840K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 8%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/3b.jpg" alt="SOUNDSHOCK">
-                                    <h3>SOUNDSHOCK</h3>
-                                        <p>Dari IDR 149K</p>
-                                            <b>Diskon s/d 60%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/3b.jpg" alt="SOUNDSHOCK" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">SOUNDSHOCK</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 149K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 60%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/3c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
-                                    <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
-                                        <p>Dari IDR 900K</p>
-                                            <b>Diskon s/d 29%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/3c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 900K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 29%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/3d.jpg" alt="The Papandayan Jazz Fest 2024">
-                                    <h3>The Papandayan Jazz Fest 2024</h3>
-                                        <p>Dari IDR 195K</p>
-                                            <b>Diskon s/d 33%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/3d.jpg" alt="The Papandayan Jazz Fest 2024"class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">The Papandayan Jazz Fest 2024</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">Dari IDR 195K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 33%</b>
                             </a>
-                            <a href="event.html" class="event-card">
-                                <img src="img/3e.jpg" alt="MaKrab KAMPUS SUCI">
-                                    <h3>MaKrab KAMPUS SUCI</h3>
-                                        <p>IDR 249K</p>
-                                            <b>Diskon s/d 50%</b>
+                            <a href="event.html" class="event-card flex-none w-60">
+                                <img src="img/3e.jpg" alt="MaKrab KAMPUS SUCI" class="rounded-lg">
+                                    <h3 class="text-lg mt-2 px-2">MaKrab KAMPUS SUCI</h3>
+                                        <p class="text-black py-1 px-2 rounded font-bold">IDR 249K</p>
+                                            <b class="bg-red-500 text-white py-1 px-2 rounded-full">Diskon s/d 50%</b>
                             </a>
                         </div>
         <br></br>
-                        <div class="section-header">
-                                <h2>Lates On Goers</h2>
-                                    <a href="event.html" class="view-all">Lihat Semua</a>
+                        <div class="section-header flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">Lates On Goers</h2>
+                                    <a href="event.html" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</a>
                         </div>
-                            <div class="event-list">
-                                <a href="event.html" class="event-card">
-                                    <img src="img/4a.png" alt="Dept Live in Jakarta 2024">
-                                        <h3>Dept Live in Jakarta 2024</h3>
-                                            <b>Dari IDR 840K</b>
+                            <div class="event-list flex overflow-x-auto gap-9">
+                                <a href="event.html" class="event-card flex-none w-60">
+                                    <img src="img/4a.png" alt="Dept Live in Jakarta 2024" class="rounded-lg">
+                                        <h3 class="text-lg mt-2 px-2">Dept Live in Jakarta 2024</h3>
+                                            <b class="text-black py-1 px-2 rounded font-bold">Dari IDR 840K</b>
                                 </a>
-                                <a href="event.html" class="event-card">
-                                    <img src="img/4b.jpg" alt="SOUNDSHOCK">
-                                        <h3>SOUNDSHOCK</h3>
-                                            <b>Dari IDR 149K</b>
+                                <a href="event.html" class="event-card flex-none w-60">
+                                    <img src="img/4b.jpg" alt="SOUNDSHOCK" class="rounded-lg">
+                                        <h3 class="text-lg mt-2 px-2">SOUNDSHOCK</h3>
+                                            <b class="text-black py-1 px-2 rounded font-bold">Dari IDR 149K</b>
                                 </a>
-                                <a href="event.html" class="event-card">
-                                    <img src="img/4c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA">
-                                        <h3>BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
-                                            <b>Dari IDR 900K</b>
+                                <a href="event.html" class="event-card flex-none w-60">
+                                    <img src="img/4c.jpg" alt="BANG YEDAM 1ST FAN MEETING IN JAKARTA" class="rounded-lg">
+                                        <h3 class="text-lg mt-2 px-2">BANG YEDAM 1ST FAN MEETING IN JAKARTA</h3>
+                                            <b class="text-black py-1 px-2 rounded font-bold">Dari IDR 900K</b>
                                 </a>
-                                <a href="event.html" class="event-card">
-                                    <img src="img/4d.jpeg" alt="The Papandayan Jazz Fest 2024">
-                                        <h3>The Papandayan Jazz Fest 2024</h3>
-                                            <b>Dari IDR 195K</b>
+                                <a href="event.html" class="event-card flex-none w-60">
+                                    <img src="img/4d.jpeg" alt="The Papandayan Jazz Fest 2024" class="rounded-lg">
+                                        <h3 class="text-lg mt-2 px-2">The Papandayan Jazz Fest 2024</h3>
+                                            <b class="text-black py-1 px-2 rounded font-bold">Dari IDR 195K</b>
                                 </a>
-                                <a href="event.html" class="event-card">
-                                    <img src="img/4e.jpeg" alt="MaKrab KAMPUS SUCI">
-                                        <h3>MaKrab KAMPUS SUCI</h3>
-                                            <b>IDR 249K</b>
+                                <a href="event.html" class="event-card flex-none w-60">
+                                    <img src="img/4e.jpeg" alt="MaKrab KAMPUS SUCI" class="rounded-lg">
+                                        <h3 class="text-lg mt-2 px-2">MaKrab KAMPUS SUCI</h3>
+                                            <b class="text-black py-1 px-2 rounded font-bold">IDR 249K</b>
                                 </a>
                             </div>
                 </section>
         <br></br>
         
-                <section class="banner">
-                    <img src="img/f2.jpg" alt="Destinasi liburan">
-                        <div class="banner-nav"></div>
+                <section class="banner relative">
+                    <img src="img/f2.jpg" alt="Destinasi liburan" class="w-full h-auto object-cover rounded-lg">
+                        <div class="banner-nav absolute bottom-4 left-1/2 transform -translate-x-1/2 flex"></div>
                 </section>
-        <br>/<br>
+        <br><br>
             </main>
         </body>
         
         
-            <footer>
-                <div class="footer-container">
+            <footer class="bg-gray-100 p-8 border-t border-gray-200">
+                <div class="footer-container flex justify-around">
                     <div class="footer-column">
-                        <h3>MENGGUNAKAN GOERS</h3>
+                        <h3 class="text-lg font-bold mb-2">MENGGUNAKAN GOERS</h3>
                         <ul>
-                            <li>Penawaran Terbaik</li>
-                            <li>Lokasi Terbaik</li>
-                            <li>Promo</li>
-                            <li>Pusat Bantuan</li>
-                            <li>Kebijakan Privasi</li>
-                            <li>Syarat dan Ketentuan</li>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Penawaran Terbaik</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Lokasi Terbaik</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Promo</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Pusat Bantuan</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Kebijakan Privasi</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Syarat dan Ketentuan</li></a>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h3>INFORMASI</h3>
+                        <h3 class="text-lg font-bold mb-2">INFORMASI</h3>
                         <ul>
-                            <li>Menayangkan Event di Goers</li>
-                            <li>Solusi Pemilik Venue</li>
-                            <li>Unduh Brosur</li>
-                            <li>Goers Experience Manager</li>
-                            <li>Point of Sales</li>
-                            <li>Ticket Scanner</li>
-                            <li>Harga</li>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Menayangkan Event di Goers</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Solusi Pemilik Venue</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Unduh Brosur</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Goers Experience Manager</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Point of Sales</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Ticket Scanner</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Harga</li></a>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h3>BISNIS</h3>
+                        <h3 class="text-lg font-bold mb-2">BISNIS</h3>
                         <ul>
-                            <li>Solusi New Normal</li>
-                            <li>Managemen Online Event</li>
-                            <li>Venue & Event Olahraga</li>
-                            <li>Taman Bertema</li>
-                            <li>Tur & Wisata</li>
-                            <li>Pameran</li>
-                            <li>Konser & Musik</li>
-                            <li>Seminar</li>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Solusi New Normal</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Managemen Online Event</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Venue & Event Olahraga</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Taman Bertema</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Tur & Wisata</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Pameran</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Konser & Musik</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Seminar</li></a>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h3>BERTEMU GOERS</h3>
+                        <h3 class="text-lg font-bold mb-2">BERTEMU GOERS</h3>
                         <ul>
-                            <li>Tentang Kami</li>
-                            <li>Blog</li>
-                            <li>Karir</li>
-                            <li>Press Kit</li>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Tentang Kami</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Blog</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Karir</li></a>
+                            <a href=""><li class="mb-1 hover:underline hover:text-green-500 transition-colors duration-400">Press Kit</li></a>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h3>Layanan Pelanggan (WA):</h3>
-                        <p>+6281110583333</p>
-                        <h3>Kantor Goers:</h3>
-                        <p>Graha Krama Yudha Lt. 4 Unit B<br>Jalan Haji Tutty Alawiyah No. 43<br>Jakarta Selatan 12760</p>
-                        <h3>Jam Kerja:</h3>
-                        <p>Hari Kerja @ 09.00 - 20.00</p>
+                        <h3 class="text-lg font-bold mb-2">Layanan Pelanggan (WA):</h3>
+                        <p class="mb-1">+6281110583333</p>
+                        <h3 class="mb-1">Kantor Goers:</h3>
+                        <p class="mb-1">Graha Krama Yudha Lt. 4 Unit B<br>Jalan Haji Tutty Alawiyah No. 43<br>Jakarta Selatan 12760</p>
+                        <h class="mb-1"3>Jam Kerja:</h3>
+                        <p class="mb-1">Hari Kerja @ 09.00 - 20.00</p>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <div class="social-media">
-                        <a href="event.html"><img src="img/Ig.svg" alt="Instagram"></a>
-                        <a href="event.html"><img src="img/fb.svg" alt="Facebook"></a>
-                        <a href="event.html "><img src="img/x.svg" alt="Twitter"></a>
+                <div class="footer-bottom flex justify-center items-center py-4">
+                    <div class="social-media flex">
+                        <a href="event.html" class="mr-4"><img src="img/Ig.svg" alt="Instagram"></a>
+                        <a href="event.html" class="mr-4"><img src="img/fb.svg" alt="Facebook"></a>
+                        <a href="event.html " class="mr-4"><img src="img/x.svg" alt="Twitter"></a>
                     </div>
-                    <div class="newsletter">
-                        <p>Dapatkan kabar terakhir dari kami</p>
-                        <input type="email" placeholder="Alamat email">
-                        <button>Berlangganan</button>
+                    <div class="newsletter flex items-center ml-8">
+                        <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
+                        <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
+                        <button class="p-2 border rounded mr-2 bg-teal-200 hover:bg-green-500 transition-colors duration-400 text-white font-bold ">Berlangganan</button>
                     </div>
                 </div>
-                <div class="footer-credits">
+                <div class="footer-credits text-center py-4 border-t border-gray-200 mt-4">
                     <p>Goers © 2021. All Rights Reserved.</p>
                     <p>Version 4.6.0</p>
                 </div>
             </footer>
-    <!-- </div> -->
 </html>
