@@ -146,14 +146,56 @@
   
   <script>
   export default {
-    data() {
-      return {
-        username: '',
-        email: '',
-        password: ''
-      }
+  data() {
+    return {
+      "email": "dimassrio@gmail.com",
+  "username": "dimassrio",
+  "password": "12345678",
+  "phone" : "08123456789",
+      rememberMe: false,
+      user: null, // State untuk menyimpan data user
     }
+  },
+  methods: {
+    
+    async handleRegister() {
+  try {
+    const payload = {
+      email: this.email,
+      username: this.username,
+      password: this.password,
+      phone: this.phone
+    };
+
+    console.log('Sending request with payload:', payload);
+
+    const response = await fetch('https://event-api.ordent-global.workers.dev/api/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error response:', errorData);
+      throw new Error(errorData.errors ? errorData.errors[0].message : 'Registration failed');
+    }
+
+    const data = await response.json();
+    console.log('Registration successful:', data);
+
+    // Redirect to login page after successful registration
+    this.$router.push('/login');
+  } catch (error) {
+    console.error('Error during registration:', error.message);
   }
+}
+
+
+  }  
+}
   </script>
   <style scoped>
   .dropdown:hover .dropdown-content {

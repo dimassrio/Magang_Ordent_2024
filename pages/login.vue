@@ -53,9 +53,15 @@
                    class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
                    placeholder="Silakan masukkan alamat email anda...">
           </div>
-          <button type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">
+          <div class="mb-4">
+            <input v-model="password" type="password" id="password" name="password" required
+                   class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
+                   placeholder="Silakan masukkan Password anda...">
+          </div>
+          <button id="submitButton" type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">
             Lanjutkan
           </button>
+        
         </form>
         
         <div class="text-center my-4 font-bold">atau</div>
@@ -163,29 +169,87 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        email: '',
-        rememberMe: false
+export default {
+  data() {
+    return {
+      email: 'dimassrio@gmail.com',
+      phone: '',
+      password: '12345678',
+      rememberMe: false,
+      user: null, // State untuk menyimpan data user
+      token: null // State untuk menyimpan token jika diperlukan
+    }
+  },
+  methods: {
+    
+    async handleLogin() {
+      try {
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: this.email,
+            phone: this.phone,
+            password: this.password
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.errors[0].message || 'Login failed');
+        }
+
+
+        const data = await response.json();
+        console.log('Login berhasil:', data);
+
+        // Arahkan ke halaman index setelah login berhasil
+        this.$router.push('/');
+      } catch (error) {
+        console.error('Error saat login:', error.message);
       }
     },
-    methods: {
-      handleLogin() {
-        console.log('Login dengan email:', this.email)
-      },
-      loginWithGoogle() {
-        console.log('Login dengan Google')
-      },
-      loginWithApple() {
-        console.log('Login dengan Apple')
-      },
-      goToHelpCenter() {
-        this.$router.push('/help-center')
+
+    async getUser() {
+      try {
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}` // Tambahkan token jika diperlukan untuk autentikasi
+
+          }
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to get user');
+        }
+
+        const data = await response.json();
+        this.user = data.result;
+        console.log('User data:', data);
+      } catch (error) {
+        console.error('Error saat mendapatkan user:', error.message);
       }
+    },
+
+    loginWithGoogle() {
+      console.log('Login dengan Google');
+    },
+    loginWithApple() {
+      console.log('Login dengan Apple');
+    },
+    goToHelpCenter() {
+      this.$router.push('/help-center');
     }
   }
-  </script>
+}
+</script>
+
+
 
 <style scoped>
 .dropdown:hover .dropdown-content {

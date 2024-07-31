@@ -298,7 +298,16 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'IndexPage'
+}
+routes:
+{
+      path: '/dashboard'
+      component: () => import('~/pages/dashboard.vue')
+      meta: { requiresAuth: true }
+    }
+{
+  middleware: 'admin'
 }
 </script>
 
@@ -307,3 +316,5 @@ export default {
   display: block;
 }
 </style>
+
+
