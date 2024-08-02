@@ -322,7 +322,6 @@
 
 <script>
 export default {
-<<<<<<< HEAD
   name: 'IndexPage',
   data() {
     return {
@@ -342,8 +341,8 @@ export default {
         this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
       }
     }
-  }
-=======
+  },
+
   name: 'IndexPage'
 }
 routes:
@@ -354,7 +353,7 @@ routes:
     }
 {
   middleware: 'admin'
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
+
 }
 </script>
 
