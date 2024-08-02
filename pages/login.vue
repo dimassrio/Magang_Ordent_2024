@@ -4,41 +4,58 @@
             <div class="logo mb-4 md:mb-0">
                 <NuxtLink to="/"><img src="/img/logoG.png" alt="GOERS" class="h-8"></NuxtLink>
             </div>
-        <div class="search-bar flex items-center bg-gray-200 rounded-full px-4 w-full md:w-1/2 mb-4 md:mb-0">
-          <input class="bg-transparent w-full p-2" type="text" placeholder="Cari acara, taman rekreasi, dll...">
-          <i class="fas fa-search"></i>
-        </div>
+
+            <div class="search-bar flex items-center bg-gray-200 rounded-full w-full md:w-1/2 mb-4 md:mb-0">
+        <input class="bg-transparent w-full p-2 rounded-full" type="text" placeholder="Cari acara, taman rekreasi, dll..." />
+        <i class="fas fa-search"></i>
+      </div>
+
         <div class="header-right flex items-center">
           <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
           <NuxtLink to="/login"><button class="btn-masuk bg-green-500 text-white font-bold py-1 px-3 rounded">Masuk</button></NuxtLink>
         </div>
       </header>
   
-      <nav class="flex flex-col md:flex-row justify-between p-4 bg-white shadow mt-2 border-gray-200">
+          <nav class="flex flex-col md:flex-row justify-between p-4 bg-white shadow mt-2 border-gray-200">
       <div class="flex flex-row justify-between w-full">
         <div class="nav-left flex flex-col md:flex-row">
           <div class="dropdown relative mb-4 md:mb-0">
-            <button class="dropbtn bg-white text-gray-800 py-2 px-4 rounded-full">Pilih Kota Anda</button>
-            <div class="dropdown-content absolute hidden bg-white rounded mt-2"></div>
+            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md w-full md:w-auto">Pilih Kota</button> 
+            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-md rounded mt-2 w-full md:w-auto"> 
+              <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Ambon</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bali</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Balikpapan</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bandung</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Banjarbaru - Banjarmasin</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Batam</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bekasi</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bima</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Blitar</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cirebon</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Depok</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Flores</a>
+            </div>
           </div>
-          <div class="dropdown relative ml-0 md:ml-4">
-            <button class="dropbtn bg-white text-gray-800 py-2 px-4 rounded-full">Kategori</button>
-            <div class="dropdown-content absolute hidden bg-white shadow-md rounded mt-2">
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edukasi & Karier</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Hiburan & Pertunjukan</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Travel & Outdoor</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Amal</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Olahraga</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tempat Wisata</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Belanja</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Seni & Belanja</a>
+          <div class="dropdown relative mb-4 md:mb-0 ml-3">
+            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md">Kategori</button> 
+            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-xl rounded-md mt-2 w-full">
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edukasi & Karier</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Hiburan & Pertunjukan</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Travel & Outdoor</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Amal</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Olahraga</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Tempat Wisata</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Belanja</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Seni & Belanja</a>
             </div>
           </div>
         </div>
+        
         <div class="nav-right flex flex-col md:flex-row items-end">
-          <a href="#" class="text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3">Blog</a>
-          <a href="#" class="text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3">Tentang Kami</a>
-          <a href="#" class="text-gray-800 ml-0 md:ml-4 md:mb-3">Kerjasama Dengan Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
         </div>
       </div>
     </nav>
@@ -53,9 +70,15 @@
                    class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
                    placeholder="Silakan masukkan alamat email anda...">
           </div>
-          <button type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">
+          <div class="mb-4">
+            <input v-model="password" type="password" id="password" name="password" required
+                   class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
+                   placeholder="Silakan masukkan Password anda...">
+          </div>
+          <button id="submitButton" type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">
             Lanjutkan
           </button>
+        
         </form>
         
         <div class="text-center my-4 font-bold">atau</div>
@@ -163,33 +186,127 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        email: '',
-        rememberMe: false
+export default {
+  data() {
+    return {
+      email: '',
+      phone: '',
+      password: '',
+      rememberMe: false,
+      user: null, // State untuk menyimpan data user
+      token: null, // State untuk menyimpan token jika diperlukan
+      showCategory: false, // Tambahkan state untuk mengelola visibilitas daftar kategori
+      showCity: false // Tambahkan state untuk mengelola visibilitas daftar kota
+    }
+  },
+  methods: {
+    async handleLogin() {
+      try {
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: this.email,
+            phone: this.phone,
+            password: this.password
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.errors[0].message || 'Login failed');
+        }
+
+        const data = await response.json();
+        console.log('Login berhasil:', data);
+
+        // Arahkan ke halaman index setelah login berhasil
+        this.$router.push('/');
+      } catch (error) {
+        console.error('Error saat login:', error.message);
       }
     },
-    methods: {
-      handleLogin() {
-        console.log('Login dengan email:', this.email)
-      },
-      loginWithGoogle() {
-        console.log('Login dengan Google')
-      },
-      loginWithApple() {
-        console.log('Login dengan Apple')
-      },
-      goToHelpCenter() {
-        this.$router.push('/help-center')
+
+    async getUser() {
+      try {
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}` // Tambahkan token jika diperlukan untuk autentikasi
+          }
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to get user');
+        }
+
+        const data = await response.json();
+        this.user = data.result;
+        console.log('User data:', data);
+      } catch (error) {
+        console.error('Error saat mendapatkan user:', error.message);
+      }
+    },
+
+    loginWithGoogle() {
+      console.log('Login dengan Google');
+    },
+    loginWithApple() {
+      console.log('Login dengan Apple');
+    },
+    goToHelpCenter() {
+      this.$router.push('/help-center');
+    },
+    toggleCategory() {
+      this.showCategory = !this.showCategory; // Tambahkan metode untuk toggle visibilitas daftar kategori
+    },
+    toggleCity() {
+      this.showCity = !this.showCity; // Tambahkan metode untuk toggle visibilitas daftar kota
+    },
+    handleClickOutside(event) {
+      if (!this.$el.contains(event.target)) {
+        this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
+        this.showCategory = false; // Tutup daftar kategori jika mengklik di luar box list
       }
     }
+  },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside); // Tambahkan event listener untuk klik di luar box list
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside); // Hapus event listener saat komponen dihancurkan
   }
-  </script>
+};
+</script>
+
 
 <style scoped>
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropbtn {
+  width: 200px; /* Atur lebar tombol sesuai dengan gambar */
+}
+
+.dropdown-content {
+  width: 300px; /* Atur lebar daftar sesuai dengan gambar */
+  max-height: 400px; /* Atur tinggi maksimum untuk daftar */
+  overflow-y: auto; /* Tambahkan scroll jika daftar terlalu panjang */
+}
+
+.dropdown-content input {
+  width: calc(100% - 16px); /* Atur lebar input sesuai dengan gambar */
+  margin: 8px; /* Tambahkan margin untuk input */
+}
+
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px; /* Atur padding untuk daftar */
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1; /* Atur warna latar belakang saat hover */
 }
 </style>
-  
