@@ -166,15 +166,23 @@
   export default {
   data() {
     return {
+<<<<<<< HEAD
       "email": "",
   "username": "",
   "password": "",
   "phone" : "",
+=======
+      "email": "dimassrio@gmail.com",
+  "username": "dimassrio",
+  "password": "12345678",
+  "phone" : "08123456789",
+>>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
       rememberMe: false,
       user: null, // State untuk menyimpan data user
     }
   },
   methods: {
+<<<<<<< HEAD
     toggleCategory() {
       this.showCategory = !this.showCategory; // Tambahkan metode untuk toggle visibilitas daftar kategori
     },
@@ -186,6 +194,9 @@
         this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
       }
     },
+=======
+    
+>>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
     async handleRegister() {
   try {
     const payload = {

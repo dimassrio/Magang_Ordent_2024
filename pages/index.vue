@@ -322,6 +322,7 @@
 
 <script>
 export default {
+<<<<<<< HEAD
   name: 'IndexPage',
   data() {
     return {
@@ -342,6 +343,18 @@ export default {
       }
     }
   }
+=======
+  name: 'IndexPage'
+}
+routes:
+{
+      path: '/dashboard'
+      component: () => import('~/pages/dashboard.vue')
+      meta: { requiresAuth: true }
+    }
+{
+  middleware: 'admin'
+>>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
 }
 </script>
 
@@ -372,3 +385,7 @@ export default {
 }
 </style>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
