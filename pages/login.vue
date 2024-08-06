@@ -154,9 +154,9 @@
         </div>
         <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
             <div class="social-media flex mb-4 md:mb-0"> 
-                <a href="event.html" class="mr-4"><img src="/img/ig.svg" alt="Instagram"></a>
-                <a href="event.html" class="mr-4"><img src="/img/fb.svg" alt="Facebook"></a>
-                <a href="event.html" class="mr-4"><img src="/img/x.svg" alt="Twitter"></a>
+                <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+                <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+                <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
             </div>
             <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
                 <p class="mr-2">Dapatkan kabar terakhir dari kami</p>

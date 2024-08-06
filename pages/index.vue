@@ -124,11 +124,11 @@
         </div>
       </div>
       <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
-        <div class="social-media flex mb-4 md:mb-0"> 
-          <a href="#" v-for="(icon, index) in socialIcons" :key="index" class="mr-4">
-            <img :src="icon" :alt="['Instagram', 'Facebook', 'Twitter'][index]">
-          </a>
-        </div>
+            <div class="social-media flex mb-4 md:mb-0"> 
+                <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+                <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+                <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
+            </div>
         <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
           <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
           <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
@@ -162,7 +162,6 @@ export default {
         bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
         bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
       },
-      socialIcons: ['/img/ig.svg', '/img/fb.svg', '/img/x.svg']
     };
   },
   computed: {

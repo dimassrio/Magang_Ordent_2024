@@ -35,9 +35,14 @@ export default {
 },
   methods: {
     getFirstImage(images) {
-      const parsedImages = JSON.parse(images);
-      return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg';
-    },
+  try {
+    const parsedImages = JSON.parse(images); // Uraikan string JSON
+    return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg';
+  } catch (error) {
+    console.error('Error parsing images:', error);
+    return '/img/default-event.jpg'; // Kembali ke gambar default jika terjadi kesalahan
+  }
+},
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
