@@ -1,3 +1,4 @@
+```vue
 <template>
     <div v-if="event">
       <h1 class="text-2xl font-bold">{{ event.name }}</h1>
@@ -11,39 +12,39 @@
     <div v-else>
       <p>Event not found.</p>
     </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        event: null
-      };
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      event: null
+    };
+  },
+  async asyncData({ params }) {
+  try {
+    const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event/${params.slug}`);
+    console.log(response.data); // Tambahkan ini untuk memeriksa data
+    return { event: response.data.result };
+  } catch (error) {
+    console.error('Error fetching event details:', error);
+    return { event: null };
+  }
+},
+  methods: {
+    getFirstImage(images) {
+      const parsedImages = JSON.parse(images);
+      return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg';
     },
-    async fetch() {
-      try {
-        const { id } = this.$route.params; 
-        const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event/${id}`);
-        this.event = response.data.result; 
-      } catch (error) {
-        console.error('Error fetching event details:', error);
-        this.event = null; 
-      }
-    },
-    methods: {
-      getFirstImage(images) {
-        const parsedImages = JSON.parse(images); 
-        return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg'; 
-      },
-      formatDate(dateString) {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString(undefined, options); 
-      }
+    formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
     }
   }
-  </script>
-  
-  <style scoped>
-  </style>
+}
+</script>
+
+<style scoped>
+</style>

@@ -7,5 +7,10 @@ function myPiniaPlugin({ store }: PiniaPluginContext) {
     console.log('This is a method from the plugin');
   };
 }
+// plugins/my-plugin.js
 
-export default myPiniaPlugin;
+
+function defineNuxtPlugin(arg0: (nuxtApp: any) => void) {
+  throw new Error('Function not implemented.');
+}
+

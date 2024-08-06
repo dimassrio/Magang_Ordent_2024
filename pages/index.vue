@@ -178,10 +178,8 @@ export default {
   methods: {
     toggleCategory() {
       this.showCategory = !this.showCategory;
-      this.showCategory = !this.showCategory;
     },
     toggleCity() {
-      this.showCity = !this.showCity;
       this.showCity = !this.showCity;
     },
     handleClickOutside(event) {
@@ -195,9 +193,11 @@ export default {
     performSearch() { 
     },
     goToEvent(result) {
-  this.$router.push(`/event/${result.id}`); // Menggunakan ID sebagai slug
-  this.searchQuery = '';
-  this.searchResults = [];
+     const url = `/event/${result.slug}`; // Hanya menggunakan slug
+     console.log('Navigating to:', url); // Tambahkan log untuk memeriksa URL
+     this.$router.push(url);
+     this.searchQuery = '';
+     this.searchResults = [];
 },
 async fetchEvents() {
   try {
@@ -238,33 +238,33 @@ async fetchEvents() {
 
 <style scoped>
 .dropbtn {
-  width: 100px;
+  width: 100px; 
 }
 
 .dropdown-content {
-  width: 200px;
-  max-height: 400px;
-  overflow-y: auto;
+  width: 200px; 
+  max-height: 400px; 
+  overflow-y: auto; 
 }
 
 .dropdown-content input {
-  width: calc(100% - 16px);
-  margin: 8px;
+  width: calc(100% - 16px); 
+  margin: 8px; 
 }
 
 .dropdown-content a {
   display: flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px 16px; 
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #f1f1f1; 
 }
 
 .search-container {
   position: relative;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .search-results {
@@ -272,10 +272,6 @@ async fetchEvents() {
   right: 0;
   max-height: 300px;
   overflow-y: auto;
-}
-
-.search-results div {
-  transition: background-color 0.2s ease;
 }
 
 .search-results::-webkit-scrollbar {
@@ -293,18 +289,5 @@ async fetchEvents() {
 
 .search-results::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-.search-results div:hover {
-  background-color: #f0f0f0;
-}
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  font-size: 1.2em;
-  color: #666;
 }
 </style>

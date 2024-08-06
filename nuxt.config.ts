@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'], // Pastikan modul ini sudah diinstal
   pages: true,
   devtools: { enabled: true },
-  plugins: ['~/plugins/my-plugin'],
+  plugins: ['~/plugins/piniaPlugin'],
   vite: {
     assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif'] // Pastikan format file ini sesuai dengan kebutuhan Anda
   },
