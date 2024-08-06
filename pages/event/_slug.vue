@@ -24,27 +24,26 @@
     },
     async fetch() {
       try {
-        const { id } = this.$route.params; // Ambil ID dari URL
+        const { id } = this.$route.params; 
         const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event/${id}`);
-        this.event = response.data.result; // Ambil data acara dari respons
+        this.event = response.data.result; 
       } catch (error) {
         console.error('Error fetching event details:', error);
-        this.event = null; // Atur event menjadi null jika terjadi kesalahan
+        this.event = null; 
       }
     },
     methods: {
       getFirstImage(images) {
-        const parsedImages = JSON.parse(images); // Mengurai string JSON menjadi array
-        return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg'; // Mengambil gambar pertama
+        const parsedImages = JSON.parse(images); 
+        return parsedImages.length > 0 ? parsedImages[0] : '/img/default-event.jpg'; 
       },
       formatDate(dateString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString(undefined, options); // Format tanggal
+        return new Date(dateString).toLocaleDateString(undefined, options); 
       }
     }
   }
   </script>
   
   <style scoped>
-  /* Tambahkan gaya sesuai kebutuhan */
   </style>
