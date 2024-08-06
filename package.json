@@ -22,11 +22,14 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@types/mini-css-extract-plugin": "^2.5.0",
+    "@types/mini-css-extract-plugin": "^2.5.0", 
     "@types/node": "^22.1.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@vue/runtime-core": "^3.4.35",
     "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   },
   "version": "1.0.0",
   "description": "Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.",

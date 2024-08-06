@@ -154,7 +154,7 @@
         </div>
         <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
             <div class="social-media flex mb-4 md:mb-0"> 
-                <a href="event.html" class="mr-4"><img src="/img/ig.svg" alt="Instagram"></a>
+                <!-- <a href="event.html" class="mr-4"><img src="/img/ig.svg" alt="Instagram"></a> -->
                 <a href="event.html" class="mr-4"><img src="/img/fb.svg" alt="Facebook"></a>
                 <a href="event.html" class="mr-4"><img src="/img/x.svg" alt="Twitter"></a>
             </div>
