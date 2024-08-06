@@ -67,7 +67,7 @@
     <div v-if="loading" class="loading-spinner">Loading...</div>
     
     <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
-      <nuxt-link v-for="event in events" :key="event.id" :to="`/event/${event.slug}-${event.id}`" class="event-card flex-none w-60">
+      <nuxt-link v-for="event in events" :key="event.id" :to="getEventUrl(event)" class="event-card flex-none w-60">
         <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
         <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
         <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
@@ -143,8 +143,11 @@
   </div>
 </template>
 
+
 <script>
+
 export default {
+  middleware: 'auth', // Menggunakan middleware untuk halaman ini
   name: 'IndexPage',
   data() {
     return {
@@ -186,10 +189,13 @@ export default {
         this.showCity = false;
         this.showCategory = false;
         this.searchResults = [];
-        this.showCity = false;
       }
     },
-    performSearch() { 
+    performSearch() {
+      console.log('Searching for:', this.searchQuery);
+      this.searchResults = this.events.filter(event =>
+        event.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     },
     goToEvent(result) {
      const url = `/event/${result.slug}`; // Hanya menggunakan slug
@@ -216,6 +222,9 @@ async fetchEvents() {
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    getEventUrl(event) {
+      return `/event/${event.slug}-${event.id}`;
     }
   },
   watch: {
