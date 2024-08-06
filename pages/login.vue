@@ -183,16 +183,16 @@
             <p class="text-gray-600">Version 4.6.0</p>
         </div>
     </footer>
-  </template>
-  
-  <script>
+</template>
+
+<script>
 export default {
+  middleware: 'admin', // Menambahkan middleware admin
   data() {
     return {
-<<<<<<< HEAD
-      email: '',
+      email: 'dimassrio@gmail.com',
       phone: '',
-      password: '',
+      password: '12345678',
       rememberMe: false,
       user: null, // State untuk menyimpan data user
       token: null, // State untuk menyimpan token jika diperlukan
@@ -201,18 +201,6 @@ export default {
     }
   },
   methods: {
-=======
-      email: 'dimassrio@gmail.com',
-      phone: '',
-      password: '12345678',
-      rememberMe: false,
-      user: null, // State untuk menyimpan data user
-      token: null // State untuk menyimpan token jika diperlukan
-    }
-  },
-  methods: {
-    
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
     async handleLogin() {
       try {
         const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
@@ -232,10 +220,6 @@ export default {
           throw new Error(errorData.errors[0].message || 'Login failed');
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
         const data = await response.json();
         console.log('Login berhasil:', data);
 
@@ -253,10 +237,6 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.token}` // Tambahkan token jika diperlukan untuk autentikasi
-<<<<<<< HEAD
-=======
-
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
           }
         });
         
@@ -270,7 +250,6 @@ export default {
         console.log('User data:', data);
       } catch (error) {
         console.error('Error saat mendapatkan user:', error.message);
-<<<<<<< HEAD
       }
     },
 
@@ -293,20 +272,8 @@ export default {
       if (!this.$el.contains(event.target)) {
         this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
         this.showCategory = false; // Tutup daftar kategori jika mengklik di luar box list
-=======
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
       }
     },
-
-    loginWithGoogle() {
-      console.log('Login dengan Google');
-    },
-    loginWithApple() {
-      console.log('Login dengan Apple');
-    },
-    goToHelpCenter() {
-      this.$router.push('/help-center');
-    }
   },
   mounted() {
     document.addEventListener('click', this.handleClickOutside); // Tambahkan event listener untuk klik di luar box list
@@ -314,16 +281,8 @@ export default {
   beforeDestroy() {
     document.removeEventListener('click', this.handleClickOutside); // Hapus event listener saat komponen dihancurkan
   }
-<<<<<<< HEAD
 };
 </script>
-
-=======
-}
-</script>
-
-
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
 
 <style scoped>
 .dropbtn {

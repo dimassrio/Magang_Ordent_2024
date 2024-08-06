@@ -166,23 +166,17 @@
   export default {
   data() {
     return {
-<<<<<<< HEAD
-      "email": "",
-  "username": "",
-  "password": "",
-  "phone" : "",
-=======
-      "email": "dimassrio@gmail.com",
-  "username": "dimassrio",
-  "password": "12345678",
-  "phone" : "08123456789",
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
+      email: '',
+      username: '',
+      password: '',
+      phone: '',
       rememberMe: false,
       user: null, // State untuk menyimpan data user
+      showCategory: false, // Tambahkan state untuk mengelola visibilitas daftar kategori
+      showCity: false // Tambahkan state untuk mengelola visibilitas daftar kota
     }
   },
   methods: {
-<<<<<<< HEAD
     toggleCategory() {
       this.showCategory = !this.showCategory; // Tambahkan metode untuk toggle visibilitas daftar kategori
     },
@@ -192,48 +186,50 @@
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
         this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
+        this.showCategory = false; // Tutup daftar kategori jika mengklik di luar box list
       }
     },
-=======
-    
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
     async handleRegister() {
-  try {
-    const payload = {
-      email: this.email,
-      username: this.username,
-      password: this.password,
-      phone: this.phone
-    };
+      try {
+        const payload = {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+          phone: this.phone
+        };
 
-    console.log('Sending request with payload:', payload);
+        console.log('Sending request with payload:', payload);
 
-    const response = await fetch('https://event-api.ordent-global.workers.dev/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error response:', errorData);
-      throw new Error(errorData.errors ? errorData.errors[0].message : 'Registration failed');
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Error response:', errorData);
+          throw new Error(errorData.errors ? errorData.errors[0].message : 'Registration failed');
+        }
+
+        const data = await response.json();
+        console.log('Registration successful:', data);
+
+        // Redirect to login page after successful registration
+        this.$router.push('/login');
+      } catch (error) {
+        console.error('Error during registration:', error.message);
+      }
     }
-
-    const data = await response.json();
-    console.log('Registration successful:', data);
-
-    // Redirect to login page after successful registration
-    this.$router.push('/login');
-  } catch (error) {
-    console.error('Error during registration:', error.message);
+  },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside); // Tambahkan event listener untuk klik di luar box list
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside); // Hapus event listener saat komponen dihancurkan
   }
-}
-
-
-  }  
 }
   </script>
 <style scoped>

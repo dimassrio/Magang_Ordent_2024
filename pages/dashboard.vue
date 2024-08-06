@@ -7,8 +7,7 @@
           </nuxt-link>
         </div>
       </header>
-      </div>
-<<<<<<< HEAD
+    </div>
 </template>  
 
 <script>
@@ -17,6 +16,3 @@ export default {
   name: 'DashboardPage'
 }
 </script>
-=======
-</template>  
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d

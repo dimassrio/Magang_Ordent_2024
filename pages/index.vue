@@ -331,60 +331,43 @@ export default {
   },
   methods: {
     toggleCategory() {
-      this.showCategory = !this.showCategory; // Tambahkan metode untuk toggle visibilitas daftar kategori
+      this.showCategory = !this.showCategory;
     },
     toggleCity() {
-      this.showCity = !this.showCity; // Tambahkan metode untuk toggle visibilitas daftar kota
+      this.showCity = !this.showCity;
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
+        this.showCity = false;
       }
     }
-  },
-
-  name: 'IndexPage'
-}
-routes:
-{
-      path: '/dashboard'
-      component: () => import('~/pages/dashboard.vue')
-      meta: { requiresAuth: true }
-    }
-{
-  middleware: 'admin'
-
+  }
 }
 </script>
 
 <style scoped>
 .dropbtn {
-  width: 100px; 
+  width: 100px;
 }
 
 .dropdown-content {
-  width: 200px; 
-  max-height: 400px; 
-  overflow-y: auto; 
+  width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .dropdown-content input {
-  width: calc(100% - 16px); 
-  margin: 8px; 
+  width: calc(100% - 16px);
+  margin: 8px;
 }
 
 .dropdown-content a {
   display: flex;
   align-items: center;
-  padding: 8px 16px; 
+  padding: 8px 16px;
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
 }
 </style>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
