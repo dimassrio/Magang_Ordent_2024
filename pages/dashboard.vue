@@ -10,9 +10,3 @@
     </div>
 </template>  
 
-<script>
-export default {
-  middleware: 'auth', // Menggunakan middleware untuk halaman ini
-  name: 'DashboardPage'
-}
-</script>
