@@ -7,8 +7,7 @@
           </nuxt-link>
         </div>
       </header>
-      </div>
-
+    </div>
 </template>  
 
 <script>

@@ -148,10 +148,10 @@
   export default {
   data() {
     return {
-      "email": "",
-  "username": "",
-  "password": "",
-  "phone" : "",
+      email: '',
+      username: '',
+      password: '',
+      phone: '',
       rememberMe: false,
       user: null, 
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
@@ -167,36 +167,37 @@
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.showCity = false; 
+        this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
+        this.showCategory = false; // Tutup daftar kategori jika mengklik di luar box list
       }
     },
     async handleRegister() {
-    try {
-    const payload = {
-      email: this.email,
-      username: this.username,
-      password: this.password,
-      phone: this.phone
-    };
+        try {
+        const payload = {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+          phone: this.phone
+        };
 
-    console.log('Sending request with payload:', payload);
+        console.log('Sending request with payload:', payload);
 
-    const response = await fetch('https://event-api.ordent-global.workers.dev/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error response:', errorData);
-      throw new Error(errorData.errors ? errorData.errors[0].message : 'Registration failed');
-    }
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Error response:', errorData);
+          throw new Error(errorData.errors ? errorData.errors[0].message : 'Registration failed');
+        }
 
-    const data = await response.json();
-    console.log('Registration successful:', data);
+        const data = await response.json();
+        console.log('Registration successful:', data);
 
     this.$router.push('/login');
     } catch (error) {

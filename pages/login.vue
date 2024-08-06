@@ -174,6 +174,7 @@
 
 <script>
 export default {
+  middleware: 'admin', // Menambahkan middleware admin
   data() {
     return {
       email: '',
@@ -214,7 +215,39 @@ export default {
         console.error('Error saat login:', error.message);
       }
     },
-    
+
+    async getUser() {
+      try {
+        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.token}` // Tambahkan token jika diperlukan untuk autentikasi
+          }
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to get user');
+        }
+
+        const data = await response.json();
+        this.user = data.result;
+        console.log('User data:', data);
+      } catch (error) {
+        console.error('Error saat mendapatkan user:', error.message);
+      }
+    },
+
+    loginWithGoogle() {
+      console.log('Login dengan Google');
+    },
+    loginWithApple() {
+      console.log('Login dengan Apple');
+    },
+    goToHelpCenter() {
+      this.$router.push('/help-center');
+    },
     toggleCategory() {
       this.showCategory = !this.showCategory;
       this.showCity = false;
@@ -259,15 +292,13 @@ export default {
       this.searchQuery = '';
       this.searchResults = [];
     },
-    
+
     loginWithGoogle() {
       console.log('Login dengan Google');
     },
-    
     loginWithApple() {
       console.log('Login dengan Apple');
     },
-    
     goToHelpCenter() {
       this.$router.push('/help-center');
     }
