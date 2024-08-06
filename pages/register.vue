@@ -23,31 +23,13 @@
             <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md w-full md:w-auto">Pilih Kota</button> 
             <div v-if="showCity" class="dropdown-content absolute bg-white shadow-md rounded mt-2 w-full md:w-auto"> 
               <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Ambon</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bali</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Balikpapan</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bandung</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Banjarbaru - Banjarmasin</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Batam</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bekasi</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bima</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Blitar</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cirebon</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Depok</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Flores</a>
+              <a v-for="city in cities" :key="city" href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
             </div>
           </div>
           <div class="dropdown relative mb-4 md:mb-0 ml-3">
             <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md">Kategori</button> 
             <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-xl rounded-md mt-2 w-full">
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edukasi & Karier</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Hiburan & Pertunjukan</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Travel & Outdoor</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Amal</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Olahraga</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Tempat Wisata</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Belanja</a>
-              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Seni & Belanja</a>
+              <a v-for="category in categories" :key="category" href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ category }}</a>
             </div>
           </div>
         </div>
@@ -166,39 +148,30 @@
   export default {
   data() {
     return {
-<<<<<<< HEAD
       "email": "",
   "username": "",
   "password": "",
   "phone" : "",
-=======
-      "email": "dimassrio@gmail.com",
-  "username": "dimassrio",
-  "password": "12345678",
-  "phone" : "08123456789",
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
       rememberMe: false,
-      user: null, // State untuk menyimpan data user
+      user: null, 
+      cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
+      categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja']
     }
   },
   methods: {
-<<<<<<< HEAD
     toggleCategory() {
-      this.showCategory = !this.showCategory; // Tambahkan metode untuk toggle visibilitas daftar kategori
+      this.showCategory = !this.showCategory; 
     },
     toggleCity() {
-      this.showCity = !this.showCity; // Tambahkan metode untuk toggle visibilitas daftar kota
+      this.showCity = !this.showCity; 
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
+        this.showCity = false; 
       }
     },
-=======
-    
->>>>>>> 0893210e5b0b5c53384724a0fcbfb55e99133e3d
     async handleRegister() {
-  try {
+    try {
     const payload = {
       email: this.email,
       username: this.username,
@@ -225,16 +198,68 @@
     const data = await response.json();
     console.log('Registration successful:', data);
 
-    // Redirect to login page after successful registration
     this.$router.push('/login');
-  } catch (error) {
+    } catch (error) {
     console.error('Error during registration:', error.message);
-  }
-}
+    }
+    },
+      toggleCategory() {
+        this.showCategory = !this.showCategory;
+        this.showCity = false;
+      },
+      
+      toggleCity() {
+        this.showCity = !this.showCity;
+        this.showCategory = false;
+      },
+      
+      handleClickOutside(event) {
+        if (!this.$el.contains(event.target)) {
+          this.showCity = false;
+          this.showCategory = false;
+          this.searchResults = [];
+        }
+      },
 
-
+      performSearch() {
+        if (this.searchQuery.trim() === '') {
+          this.searchResults = [];
+          return;
+        }
+        
+        this.searchResults = this.getAllSearchableContent().filter(item =>
+          item.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      },
+      
+      getAllSearchableContent() {
+        return [
+          { name: 'Dept Live in Jakarta 2024', slug: 'dept-live-in-jakarta-2024' },
+          { name: 'SOUNDSHOCK', slug: 'soundshock' },
+          { name: 'BANG YEDAM 1ST FAN MEETING IN JAKARTA', slug: 'bang-yedam-1st-fan-meeting-in-jakarta' },
+          { name: 'The Papandayan Jazz Fest 2024', slug: 'the-papandayan-jazz-fest-2024' },
+          { name: 'Puri Nirwana Waterpark Festival', slug: 'puri-nirwana-waterpark-festival' },
+        ];
+      },
+      
+      goToEvent(result) {
+        this.$router.push(`/event/${result.slug}`);
+        this.searchQuery = '';
+        this.searchResults = [];
+      },
+      mounted() {
+        document.addEventListener('click', this.handleClickOutside);
+      },
+      beforeDestroy() {
+        document.removeEventListener('click', this.handleClickOutside);
+      },
+      watch: {
+        searchQuery() {
+          this.performSearch();
+        }
+      }
   }  
-}
+};
   </script>
 <style scoped>
 .dropbtn {
