@@ -160,8 +160,8 @@ export default {
       searchResults: [], 
       events: [], 
       loading: true, 
-      isSearching: false, // Menandakan apakah sedang mencari
-      searchConfirmed: false, // Menandakan apakah pencarian telah dikonfirmasi
+      isSearching: false,
+      searchConfirmed: false, 
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
@@ -175,11 +175,11 @@ export default {
 
   async mounted() {
     await this.fetch();
-    document.addEventListener('keydown', this.handleKeyPress); // Tambahkan event listener
+    document.addEventListener('keydown', this.handleKeyPress); 
   },
   
   beforeDestroy() {
-    document.removeEventListener('keydown', this.handleKeyPress); // Hapus event listener
+    document.removeEventListener('keydown', this.handleKeyPress); 
   },
 
   methods: {
@@ -211,7 +211,7 @@ export default {
             images: JSON.parse(event.images)
           };
         });
-        this.isSearching = true; // Set flag ke true saat melakukan pencarian
+        this.isSearching = true; 
       } catch (error) {
         console.error('Error searching events:', error);
       }
@@ -219,34 +219,25 @@ export default {
 
     performSearch() {
       if (this.searchQuery) {
-        this.searchEvents(); // Call search function
-        this.searchConfirmed = false; // Reset flag pencarian yang dikonfirmasi
+        this.searchEvents();
+        this.searchConfirmed = false; 
       } else {
-        this.resetSearch(); // Reset jika tidak ada query
+        this.resetSearch();
       }
     },
 
     resetSearch() {
-      this.searchResults = []; // Clear results
-      this.isSearching = false; // Reset flag
-      this.searchConfirmed = false; // Reset pencarian yang dikonfirmasi
+      this.searchResults = [];
+      this.isSearching = false;
+      this.searchConfirmed = false;
     },
-
-    handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        this.performSearch(); // Konfirmasi pencarian dengan Enter
-      }
-    },
-
     selectRecommendation(result) {
-      this.searchQuery = result.name; // Set searchQuery ke nama rekomendasi
-      this.searchConfirmed = true; // Set flag ke true saat memilih rekomendasi
-      this.searchResults = []; // Clear search results
-      this.isSearching = false; // Reset flag pencarian
-      this.searchEvents(); // Panggil pencarian untuk mendapatkan hasil yang relevan
-
-      // Hapus teks di search bar
-      this.searchQuery = ''; // Kosongkan searchQuery
+      this.searchQuery = result.name; 
+      this.searchConfirmed = true; 
+      this.searchResults = []; 
+      this.isSearching = false; 
+      this.searchEvents(); 
+      this.searchQuery = ''; 
     },
 
     getFirstImage(images) {
@@ -270,7 +261,7 @@ export default {
       if (!this.$el.contains(event.target)) {
         this.showCity = false;
         this.showCategory = false;
-        this.resetSearch(); // Reset pencarian saat klik di luar
+        this.resetSearch(); 
       }
     },
 
@@ -278,14 +269,14 @@ export default {
       const url = `/event/${result.slug}`;
       this.$router.push(url);
       this.searchQuery = '';
-      this.resetSearch(); // Reset pencarian saat pergi ke event
+      this.resetSearch(); 
     }
   },
 
   watch: {
     searchQuery() {
       if (!this.searchConfirmed) {
-        this.performSearch(); // Hanya panggil performSearch jika pencarian belum dikonfirmasi
+        this.performSearch(); 
       }
     }
   }
