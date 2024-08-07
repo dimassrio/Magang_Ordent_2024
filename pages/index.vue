@@ -59,22 +59,21 @@
       </section>
 
       <section class="events p-4 bg-white mt-4">
-    <div class="section-header flex justify-between items-center mb-4">
-      <h2 class="text-xl font-bold">Best Offer</h2>
-      <nuxt-link to="/event" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</nuxt-link>
-    </div>
-    
-    <div v-if="loading" class="loading-spinner">Loading...</div>
-    
-    <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
-      <nuxt-link v-for="event in events" :key="event.id" :to="getEventUrl(event)" class="event-card flex-none w-60">
-        <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
-        <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
-        <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
-        <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
-      </nuxt-link>
-    </div>
-  </section>
+      <div class="section-header flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Best Offer</h2>
+        <nuxt-link to="#" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</nuxt-link>
+      </div>
+      
+      <div v-if="loading" class="loading-spinner">Loading...</div>
+        <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
+          <nuxt-link v-for="event in events" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
+            <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
+            <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
+            <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
+            <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
+          </nuxt-link>
+        </div>
+    </section>
     </main>
 
     <footer class="bg-gray-100 p-8 border-t border-gray-200">
@@ -145,10 +144,9 @@
 
 
 <script>
+import axios from 'axios';
 
 export default {
-  middleware: 'auth', // Menggunakan middleware untuk halaman ini
-  name: 'IndexPage',
   data() {
     return {
       showCategory: false,
@@ -167,18 +165,36 @@ export default {
       },
     };
   },
-  computed: {
-    filteredEvents() { 
-      if (this.searchQuery.trim() === '') {
-        return this.events; 
-      }
-      return this.events.filter(event =>
-        event.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    }
+
+  async mounted() {
+    await this.fetch();
   },
   methods: {
-    toggleCategory() {
+    async fetch() {
+      try {
+        console.log('Fetching data...');
+        const response = await axios.get('https://event-api.ordent-global.workers.dev/api/event');
+        console.log('Response received:', response);
+        this.events = response.data.result.map(event => {
+          return {
+            ...event,
+            images: JSON.parse(event.images)
+          };
+        });
+        this.loading = false; 
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        this.loading = false; 
+      }
+    },
+    getFirstImage(images) {
+      return Array.isArray(images) && images.length > 0 ? images[0] : '/img/default-event.jpg'; 
+    },
+    formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+      toggleCategory() {
       this.showCategory = !this.showCategory;
     },
     toggleCity() {
@@ -198,33 +214,10 @@ export default {
       );
     },
     goToEvent(result) {
-     const url = `/event/${result.slug}`; // Hanya menggunakan slug
-     console.log('Navigating to:', url); // Tambahkan log untuk memeriksa URL
+     const url = `/event/${result.slug}`;
      this.$router.push(url);
      this.searchQuery = '';
      this.searchResults = [];
-},
-async fetchEvents() {
-  try {
-    const response = await fetch('https://event-api.ordent-global.workers.dev/api/event');
-    const data = await response.json();
-    console.log(data); // Menambahkan log untuk memeriksa data yang diterima dari API
-    this.events = Array.isArray(data.result) ? data.result : []; // Memastikan data di-bind dengan benar
-    this.loading = false; // Mengatur loading menjadi false setelah data diambil
-  } catch (error) {
-    console.error('Error fetching events:', error);
-    this.loading = false; // Mengatur loading menjadi false jika terjadi error
-  }
-},
-    getFirstImage(images) {
-      return images ? images.split(',')[0] : '/img/default-event.jpg';
-    },
-    formatDate(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    },
-    getEventUrl(event) {
-      return `/event/${event.slug}-${event.id}`;
     }
   },
   watch: {
@@ -232,16 +225,10 @@ async fetchEvents() {
       this.performSearch();
     }
   },
-  async mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-    await this.fetchEvents(); 
-  },
   beforeDestroy() {
     document.removeEventListener('click', this.handleClickOutside);
   }
 }
-  
-  
 </script>
 
 <style scoped>
