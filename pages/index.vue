@@ -14,7 +14,7 @@
         </div>
 
         <div v-if="searchResults.length > 0" class="search-results absolute bg-white shadow-md rounded mt-2 w-full z-10">
-          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="goToEvent(result)">{{ result.name }}</div>
+          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
         </div>
       </div>
 
@@ -59,21 +59,26 @@
       </section>
 
       <section class="events p-4 bg-white mt-4">
-      <div class="section-header flex justify-between items-center mb-4">
-        <h2 class="text-xl font-bold">Best Offer</h2>
-        <nuxt-link to="#" class="view-all bg-teal-100 text-green-700 py-2 px-4 rounded-full hover:bg-teal-200 transition-colors duration-400 font-bold">Lihat Semua</nuxt-link>
-      </div>
-      
-      <div v-if="loading" class="loading-spinner">Loading...</div>
+        <div class="section-header flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Best Offer</h2>
+        </div>
+        
+        <div v-if="loading" class="loading-spinner">Loading...</div>
         <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
-          <nuxt-link v-for="event in events" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
+          <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
             <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
             <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
             <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
             <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
           </nuxt-link>
         </div>
-    </section>
+
+        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
+          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">
+            {{ result.name }}
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="bg-gray-100 p-8 border-t border-gray-200">
@@ -155,6 +160,8 @@ export default {
       searchResults: [], 
       events: [], 
       loading: true, 
+      isSearching: false, // Menandakan apakah sedang mencari
+      searchConfirmed: false, // Menandakan apakah pencarian telah dikonfirmasi
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
@@ -168,11 +175,17 @@ export default {
 
   async mounted() {
     await this.fetch();
+    document.addEventListener('keydown', this.handleKeyPress); // Tambahkan event listener
   },
+  
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.handleKeyPress); // Hapus event listener
+  },
+
   methods: {
     async fetch() {
       try {
-        console.log('Fetching data...');
+        console.log('Fetching all events...');
         const response = await axios.get('https://event-api.ordent-global.workers.dev/api/event');
         console.log('Response received:', response);
         this.events = response.data.result.map(event => {
@@ -187,46 +200,94 @@ export default {
         this.loading = false; 
       }
     },
+    
+    async searchEvents() {
+      try {
+        console.log('Searching for:', this.searchQuery);
+        const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event?search=${this.searchQuery}`);
+        this.searchResults = response.data.result.map(event => {
+          return {
+            ...event,
+            images: JSON.parse(event.images)
+          };
+        });
+        this.isSearching = true; // Set flag ke true saat melakukan pencarian
+      } catch (error) {
+        console.error('Error searching events:', error);
+      }
+    },
+
+    performSearch() {
+      if (this.searchQuery) {
+        this.searchEvents(); // Call search function
+        this.searchConfirmed = false; // Reset flag pencarian yang dikonfirmasi
+      } else {
+        this.resetSearch(); // Reset jika tidak ada query
+      }
+    },
+
+    resetSearch() {
+      this.searchResults = []; // Clear results
+      this.isSearching = false; // Reset flag
+      this.searchConfirmed = false; // Reset pencarian yang dikonfirmasi
+    },
+
+    handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        this.performSearch(); // Konfirmasi pencarian dengan Enter
+      }
+    },
+
+    selectRecommendation(result) {
+      this.searchQuery = result.name; // Set searchQuery ke nama rekomendasi
+      this.searchConfirmed = true; // Set flag ke true saat memilih rekomendasi
+      this.searchResults = []; // Clear search results
+      this.isSearching = false; // Reset flag pencarian
+      this.searchEvents(); // Panggil pencarian untuk mendapatkan hasil yang relevan
+
+      // Hapus teks di search bar
+      this.searchQuery = ''; // Kosongkan searchQuery
+    },
+
     getFirstImage(images) {
       return Array.isArray(images) && images.length > 0 ? images[0] : '/img/default-event.jpg'; 
     },
+
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
-      toggleCategory() {
+
+    toggleCategory() {
       this.showCategory = !this.showCategory;
     },
+
     toggleCity() {
       this.showCity = !this.showCity;
     },
+
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
         this.showCity = false;
         this.showCategory = false;
-        this.searchResults = [];
+        this.resetSearch(); // Reset pencarian saat klik di luar
       }
     },
-    performSearch() {
-      console.log('Searching for:', this.searchQuery);
-      this.searchResults = this.events.filter(event =>
-        event.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
+
     goToEvent(result) {
-     const url = `/event/${result.slug}`;
-     this.$router.push(url);
-     this.searchQuery = '';
-     this.searchResults = [];
+      const url = `/event/${result.slug}`;
+      this.$router.push(url);
+      this.searchQuery = '';
+      this.resetSearch(); // Reset pencarian saat pergi ke event
     }
   },
+
   watch: {
     searchQuery() {
-      this.performSearch();
+      if (!this.searchConfirmed) {
+        this.performSearch(); // Hanya panggil performSearch jika pencarian belum dikonfirmasi
+      }
     }
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.handleClickOutside);
   }
 }
 </script>
