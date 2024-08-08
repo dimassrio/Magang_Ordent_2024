@@ -60,18 +60,16 @@
           <h2 class="text-xl font-bold">Best Offer</h2>
         </div>
         <div v-if="loading" class="loading-spinner">Loading...</div>
-        <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
-          <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
-            <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
-            <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
-            <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
-            <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
-          </nuxt-link>
-        </div>
-        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
-          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">
-            {{ result.name }}
+          <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
+            <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
+              <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
+              <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
+              <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
+              <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
+            </nuxt-link>
           </div>
+        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
+          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
         </div>
       </section>
     </main>
@@ -157,10 +155,10 @@ export default {
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
-        menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
-        informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
-        bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
-        bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
+      menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
+      informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
+      bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
+      bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
       },
     };
   },
@@ -210,6 +208,7 @@ export default {
       this.searchResults = [];
       this.searchConfirmed = false;
     },
+    
     selectRecommendation(result) {
       this.searchQuery = result.name; 
       this.searchConfirmed = true; 
