@@ -167,8 +167,8 @@
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.showCity = false; // Tutup daftar kota jika mengklik di luar box list
-        this.showCategory = false; // Tutup daftar kategori jika mengklik di luar box list
+        this.showCity = false; 
+        this.showCategory = false; 
       }
     },
     async handleRegister() {

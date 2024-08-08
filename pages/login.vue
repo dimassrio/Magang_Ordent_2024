@@ -174,7 +174,7 @@
 
 <script>
 export default {
-  middleware: 'admin', // Menambahkan middleware admin
+  middleware: 'admin',
   data() {
     return {
       email: '',
@@ -222,7 +222,7 @@ export default {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.token}` // Tambahkan token jika diperlukan untuk autentikasi
+            'Authorization': `Bearer ${this.token}`
           }
         });
         

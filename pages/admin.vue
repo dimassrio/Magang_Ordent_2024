@@ -1,5 +1,4 @@
 <template>
-  <!-- Tambahkan template HTML Anda di sini -->
   <div>
     <h1>Welcome</h1>
   </div>
@@ -7,7 +6,7 @@
 
 <script>
 export default {
-  middleware: 'admin' // Menerapkan middleware admin.js pada layout ini
+  middleware: 'admin' 
 }
 
 export const state = () => ({
@@ -22,5 +21,5 @@ export const mutations = {
 </script>
 
 <style scoped>
-  /* Tambahkan gaya CSS Anda di sini */
+
 </style>

@@ -1,4 +1,3 @@
-// middleware/admin.ts
 import { Middleware } from '@nuxt/types'
 const admin: Middleware = ({ store, redirect }) => {
   if (!store.state.user || !store.state.user.isAdmin) {
