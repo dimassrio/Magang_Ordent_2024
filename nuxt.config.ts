@@ -19,5 +19,7 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-08-06',
-
+  routeRules: {
+    '/**': { cache: false }
+  }
 })
