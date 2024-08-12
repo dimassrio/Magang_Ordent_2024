@@ -7,19 +7,6 @@
         </nuxt-link>
       </div>
 
-      <div class="search-container relative w-full md:w-1/2 mb-4 md:mb-0">
-        <div class="search-bar items-center bg-gray-200 rounded-full">
-          <input class="bg-transparent w-full p-2 rounded-full" type="text" placeholder="Cari acara, taman rekreasi, dll..." v-model="searchQuery" @input="performSearch"/>
-          <i class="fas fa-search mr-2"></i>
-        </div>
-
-        <div v-if="searchResults.length > 0" class="search-results absolute bg-white shadow-md rounded mt-2 w-full z-10">
-          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">
-            {{ result.name }}
-          </div>
-        </div>
-      </div>
-
       <div class="header-right flex items-center">
         <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
         <nuxt-link to="/login">
@@ -48,7 +35,7 @@
 
         <div class="nav-right flex flex-col md:flex-row items-end">
           <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
+          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
           <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
         </div>
       </div>
@@ -57,9 +44,12 @@
     <div class="container mx-auto p-4" v-if="event">
       <header class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold">{{ event.name }}</h1>
-        <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Beli Tiket</button>
+        <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-600" @click="showCalendar=true">Beli Tiket</button>
       </header>
-      
+
+      <div v-if="showCalendar" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <calendar @dateSelected="handleDateSelection" @close="showCalendar = false" />
+      </div>
 
       <div class="flex flex-col md:flex-row">
         <div class="md:w-2/3 pr-4">
@@ -74,8 +64,7 @@
           <div class="bg-white p-4 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold">Detail Acara</h3>
             <p class="my-1">Lokasi: <span class="font-semibold">{{ event.location }}</span></p>
-            <p class="my-1">Tanggal: <span class="font-semibold">{{ formatDate(event.start_at) }}</span></p>
-            <p class="my-1">Waktu: <span class="font-semibold">{{ event.start_time }} - {{ event.end_time }}</span></p>
+            <p class="my-1">Waktu: <span class="font-semibold">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</span></p>
             <p class="my-1">Harga: <span class="font-semibold">IDR {{ event.price }}</span></p>
           </div>
         </div>
@@ -130,11 +119,11 @@
         </div>
       </div>
       <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
-            <div class="social-media flex mb-4 md:mb-0"> 
-                <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
-                <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
-                <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
-            </div>
+        <div class="social-media flex mb-4 md:mb-0"> 
+          <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+          <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+          <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
+        </div>
         <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
           <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
           <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
@@ -151,28 +140,32 @@
 
 <script>
 import axios from 'axios';
+import calendar from '/components/calender';
 
 export default {
+  components: {
+    calendar,
+  },
   data() {
     return {
       showCategory: false,
       showCity: false,
+      showCalendar: false, 
       searchQuery: '', 
       searchResults: [], 
       event: null, 
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
-      menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
-      informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
-      bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
-      bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
+        menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
+        informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
+        bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
+        bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
       },
     };
   },
   async mounted() {
     await this.fetchEvent(); 
-
   },
   methods: {
     async fetchEvent() {
@@ -203,21 +196,17 @@ export default {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
-    performSearch() {
-      if (this.searchQuery) {
-        this.searchEvents();
-        this.searchConfirmed = false; 
-      } else {
-        this.resetSearch();
-      }
-    },
-    selectRecommendation(result) {
-      this.searchQuery = result.name; 
-      this.searchConfirmed = true; 
-      this.searchResults = []; 
-      this.isSearching = false; 
-      this.searchEvents(); 
-      this.searchQuery = ''; 
+
+    handleDateSelection(date) {
+      console.log('Tanggal yang dipilih:', date); 
+      this.showCalendar = false;
+
+      const formattedDate = date.toISOString().split('T')[0]; 
+      const targetPath = `/event/${this.$route.params.slug}/tiket/${formattedDate}`;
+
+      console.log('Navigating to:', targetPath); 
+
+      this.$router.push({ path: targetPath });
     },
   },
 };
@@ -251,5 +240,9 @@ export default {
 
 .container {
   max-width: 1200px;
+}
+
+.fixed {
+  z-index: 1000; 
 }
 </style>

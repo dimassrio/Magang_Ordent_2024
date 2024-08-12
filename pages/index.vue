@@ -13,9 +13,11 @@
           <i class="fas fa-search mr-2"></i>
         </div>
 
-        <div v-if="searchResults.length > 0" class="search-results absolute bg-white shadow-md rounded mt-2 w-full z-10">
+        <!-- Rekomendasi pencarian dinonaktifkan
+        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
           <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
         </div>
+        -->
       </div>
 
       <div class="header-right flex items-center">
@@ -43,22 +45,26 @@
             </div>
           </div>
         </div>
+
         <div class="nav-right flex flex-col md:flex-row items-end">
           <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
+          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
           <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
         </div>
       </div>
     </nav>
+
     <main>
       <section class="banner">
         <img src="/img/f1.jpg" alt="Destinasi liburan" class="w-full h-auto object-cover rounded-lg" />
         <div class="banner-nav bottom-4 left-1/2 transform -translate-x-1/2 flex"></div>
       </section>
+
       <section class="events p-4 bg-white mt-4">
         <div class="section-header flex justify-between items-center mb-4">
           <h2 class="text-xl font-bold">Best Offer</h2>
         </div>
+        
         <div v-if="loading" class="loading-spinner">Loading...</div>
           <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
             <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
@@ -68,11 +74,13 @@
               <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
             </nuxt-link>
           </div>
+
         <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
           <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
         </div>
       </section>
     </main>
+
     <footer class="bg-gray-100 p-8 border-t border-gray-200">
       <div class="footer-container flex flex-col md:flex-row justify-around"> 
         <div class="footer-column mb-4 md:mb-0">
@@ -119,13 +127,13 @@
           <p class="mb-1">Hari Kerja @ 09.00 - 20.00</p>
         </div>
       </div>
-      <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4">
-        <div class="social-media flex mb-4 md:mb-0">
-          <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
-          <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
-          <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
-        </div>
-        <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8">
+      <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
+            <div class="social-media flex mb-4 md:mb-0"> 
+                <a href="#" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+                <a href="#" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+                <a href="#" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
+            </div>
+        <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
           <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
           <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
           <button class="p-2 border rounded bg-teal-200 hover:bg-green-500 transition-colors duration-400 text-white font-bold gap-4">Berlangganan</button>
@@ -151,6 +159,7 @@ export default {
       searchResults: [], 
       events: [], 
       loading: true, 
+      isSearching: false,
       searchConfirmed: false, 
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
@@ -162,40 +171,51 @@ export default {
       },
     };
   },
+
   async mounted() {
     await this.fetch();
     document.addEventListener('keydown', this.handleKeyPress); 
   },
+  
   beforeDestroy() {
     document.removeEventListener('keydown', this.handleKeyPress); 
   },
+
   methods: {
     async fetch() {
       try {
         console.log('Fetching all events...');
         const response = await axios.get('https://event-api.ordent-global.workers.dev/api/event');
-        this.events = response.data.result.map(event => ({
-          ...event,
-          images: JSON.parse(event.images)
-        }));
+        console.log('Response received:', response);
+        this.events = response.data.result.map(event => {
+          return {
+            ...event,
+            images: JSON.parse(event.images)
+          };
+        });
         this.loading = false; 
       } catch (error) {
         console.error('Error fetching events:', error);
         this.loading = false; 
       }
     },
+    
     async searchEvents() {
       try {
         console.log('Searching for:', this.searchQuery);
         const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event?search=${this.searchQuery}`);
-        this.searchResults = response.data.result.map(event => ({
-          ...event,
-          images: JSON.parse(event.images)
-        }));
+        this.searchResults = response.data.result.map(event => {
+          return {
+            ...event,
+            images: JSON.parse(event.images)
+          };
+        });
+        this.isSearching = true; 
       } catch (error) {
         console.error('Error searching events:', error);
       }
     },
+
     performSearch() {
       if (this.searchQuery) {
         this.searchEvents();
@@ -204,8 +224,10 @@ export default {
         this.resetSearch();
       }
     },
+
     resetSearch() {
       this.searchResults = [];
+      this.isSearching = false;
       this.searchConfirmed = false;
     },
     
@@ -213,22 +235,28 @@ export default {
       this.searchQuery = result.name; 
       this.searchConfirmed = true; 
       this.searchResults = []; 
+      this.isSearching = false; 
       this.searchEvents(); 
       this.searchQuery = ''; 
     },
+
     getFirstImage(images) {
       return Array.isArray(images) && images.length > 0 ? images[0] : '/img/default-event.jpg'; 
     },
+
     formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
+
     toggleCategory() {
       this.showCategory = !this.showCategory;
     },
+
     toggleCity() {
       this.showCity = !this.showCity;
     },
+
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
         this.showCity = false;
@@ -236,6 +264,7 @@ export default {
         this.resetSearch(); 
       }
     },
+
     goToEvent(result) {
       const url = `/event/${result.slug}`;
       this.$router.push(url);
@@ -243,6 +272,7 @@ export default {
       this.resetSearch(); 
     }
   },
+
   watch: {
     searchQuery() {
       if (!this.searchConfirmed) {
@@ -257,43 +287,53 @@ export default {
 .dropbtn {
   width: 100px; 
 }
+
 .dropdown-content {
   width: 200px; 
   max-height: 400px; 
   overflow-y: auto; 
 }
+
 .dropdown-content input {
   width: calc(100% - 16px); 
   margin: 8px; 
 }
+
 .dropdown-content a {
   display: flex;
   align-items: center;
   padding: 8px 16px; 
 }
+
 .dropdown-content a:hover {
   background-color: #f1f1f1; 
 }
+
 .search-container {
   position: relative;
   margin: 0 auto;
 }
+
 .search-results {
   left: 0;
   right: 0;
   max-height: 300px;
   overflow-y: auto;
 }
+
 .search-results::-webkit-scrollbar {
   width: 8px;
 }
+
 .search-results::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
 .search-results::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
+
 .search-results::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
