@@ -15,12 +15,11 @@
   export default {
     async asyncData({ params }) {
       try {
-        // Perbaiki URL API
         const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/tickets/${params.slug}/${params.date}`);
         return {
           slug: params.slug,
           date: params.date,
-          tickets: response.data.tickets || [], // Pastikan untuk menghindari error jika tidak ada tiket
+          tickets: response.data.tickets || [], 
         };
       } catch (error) {
         console.error('Error fetching tickets:', error.response ? error.response.data : error.message);
@@ -38,7 +37,6 @@
     },
     methods: {
       addToCart(ticket) {
-        // Logika untuk menambahkan tiket ke keranjang
         console.log('Tiket ditambahkan ke keranjang:', ticket);
       },
     },
