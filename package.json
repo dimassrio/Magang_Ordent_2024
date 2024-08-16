@@ -10,23 +10,23 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/types": "^2.18.1",
     "@pinia/nuxt": "^0.5.3",
     "@vue/language-core": "^2.0.29",
-    "@vuepic/vue-datepicker": "^9.0.1",
-    "axios": "^1.7.3",
+    "@vuepic/vue-datepicker": "^9.0.2",
+    "axios": "^1.7.4",
     "esbuild": "^0.23.0",
     "mini-css-extract-plugin": "^2.9.0",
     "nuxt": "^3.12.4",
     "pinia": "^2.2.1",
-    "tailwindcss": "^3.4.9",
+    "tailwindcss": "^3.4.10",
     "uuid": "^10.0.0",
     "vue": "^3.4.37"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.18.1",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@types/mini-css-extract-plugin": "^2.5.0",
-    "@types/node": "^22.1.0",
+    "@types/node": "^22.2.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@vue/runtime-core": "^3.4.37",
     "webpack-bundle-analyzer": "^4.10.2"

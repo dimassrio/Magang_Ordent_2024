@@ -13,12 +13,11 @@
           <i class="fas fa-search mr-2"></i>
         </div>
 
-        <!-- Rekomendasi pencarian dinonaktifkan
+                <!-- Rekomendasi pencarian dinonaktifkan
         <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
           <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
-        </div>
-        -->
-      </div>
+        </div> -->
+      </div> 
 
       <div class="header-right flex items-center">
         <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
@@ -66,17 +65,14 @@
         </div>
         
         <div v-if="loading" class="loading-spinner">Loading...</div>
-          <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
-            <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" :to="`/event/${event.slug}`" class="event-card flex-none w-60">
-              <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
-              <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
-              <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
-              <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
-            </nuxt-link>
-          </div>
-
-        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
-          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
+        
+        <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
+          <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" @click="goToEvent(event.slug)">
+            <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
+            <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
+            <p class="text-sm text-gray-600 px-2">{{ event.location }}</p>
+            <p class="text-sm px-2">{{ formatDate(event.start_at) }} - {{ formatDate(event.end_at) }}</p>
+          </nuxt-link>
         </div>
       </section>
     </main>
@@ -128,24 +124,17 @@
         </div>
       </div>
       <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
-            <div class="social-media flex mb-4 md:mb-0"> 
-                <a href="#" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
-                <a href="#" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
-                <a href="#" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
-            </div>
-        <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
-          <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
-          <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
-          <button class="p-2 border rounded bg-teal-200 hover:bg-green-500 transition-colors duration-400 text-white font-bold gap-4">Berlangganan</button>
-        </div>
-      </div>
-      <div class="footer-credits text-center py-4 border-t border-gray-200 mt-4">
-        <p>Goers © 2021. All Rights Reserved.</p>
-        <p class="text-gray-600">Version 4.6.0</p>
+        <div class="social-media flex mb-4 md:mb-0"> 
+          <a href="#" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+          <a href="#" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+          <a href="#"><img src="/img/x.png" alt="Twitter"></a>
+        </div> 
+        <p class="text-gray-600">&copy; 2024 GOERS. All rights reserved.</p>
       </div>
     </footer>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -164,23 +153,13 @@ export default {
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
-      menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
-      informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
-      bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
-      bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
+        menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
+        informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
+        bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
+        bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
       },
     };
   },
-
-  async mounted() {
-    await this.fetch();
-    document.addEventListener('keydown', this.handleKeyPress); 
-  },
-  
-  beforeDestroy() {
-    document.removeEventListener('keydown', this.handleKeyPress); 
-  },
-
   methods: {
     async fetch() {
       try {
@@ -204,7 +183,7 @@ export default {
       try {
         console.log('Searching for:', this.searchQuery);
         const response = await axios.get(`https://event-api.ordent-global.workers.dev/api/event?search=${this.searchQuery}`);
-        this.searchResults = response.data.result.map(event => {
+        this.events = response.data.result.map(event => {
           return {
             ...event,
             images: JSON.parse(event.images)
@@ -265,11 +244,8 @@ export default {
       }
     },
 
-    goToEvent(result) {
-      const url = `/event/${result.slug}`;
-      this.$router.push(url);
-      this.searchQuery = '';
-      this.resetSearch(); 
+    goToEvent(slug) {
+      this.$router.push(`/event/${slug}/tiket`);
     }
   },
 
@@ -279,9 +255,20 @@ export default {
         this.performSearch(); 
       }
     }
+  },
+
+  mounted() {
+    this.fetch();
+    document.addEventListener('click', this.handleClickOutside);
+  },
+
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside);
   }
 }
 </script>
+
+
 
 <style scoped>
 .dropbtn {
@@ -307,6 +294,24 @@ export default {
 
 .dropdown-content a:hover {
   background-color: #f1f1f1; 
+}
+
+.event-list a {
+  cursor: pointer; 
+}
+
+.event-list img {
+  pointer-events: none; 
+}
+
+
+.event-card {
+  position: relative;
+  z-index: 1; 
+}
+
+.event-card:hover {
+  cursor: pointer;
 }
 
 .search-container {
