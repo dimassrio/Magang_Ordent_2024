@@ -44,11 +44,11 @@
       <div class="container mx-auto p-4" v-if="event">
         <header class="flex justify-between items-center mb-4">
           <h1 class="text-3xl font-bold">{{ event.name }}</h1>
-          <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-600" @click="showCalendar=true">Beli Tiket</button>
+          <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-600" @click="showCalendar=true">Pilih Tanggal</button>
         </header>
   
         <div v-if="showCalendar" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <calendar @dateSelected="handleDateSelection" @close="showCalendar = false" />
+          <calendar :initialDate="selectedDate || new Date()" @dateSelected="handleDateSelection" @close="showCalendar = false" />
         </div>
   
         <div class="flex flex-col md:flex-row">
@@ -151,6 +151,7 @@
         showCategory: false,
         showCity: false,
         showCalendar: false, 
+        selectedDate: null,
         searchQuery: '', 
         searchResults: [], 
         event: null, 

@@ -16,7 +16,17 @@
     </div>
     <div class="dates grid grid-cols-7 gap-2 mt-2">
       <div
-v-for="(date, index) in dates" :key="index" class="date p-3 cursor-pointer rounded-full hover:bg-blue-200" @click="selectDate(date)":class="{'bg-blue-500 text-white': isSelected(date), 'text-gray-400': !date.isCurrentMonth}">{{ date.day }}</div>
+        v-for="(date, index) in dates"
+        :key="index"
+        class="date p-3 cursor-pointer rounded-full hover:bg-blue-200"
+        @click="selectDate(date)"
+        :class="{
+          'bg-blue-500 text-white': isSelected(date),
+          'text-gray-400': !date.isCurrentMonth
+        }"
+      >
+        {{ date.day }}
+      </div>
     </div>
     <div class="footer mt-4 text-right">
       <button @click="$emit('close')" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors duration-400">Tutup</button>
@@ -26,12 +36,17 @@ v-for="(date, index) in dates" :key="index" class="date p-3 cursor-pointer round
 
 <script>
 export default {
+  props: {
+    initialDate: {
+      type: Date,
+      default: () => new Date()
+    }
+  },
   data() {
-    const now = new Date();
     return {
-      currentYear: now.getFullYear(),
-      currentMonth: now.getMonth(),
-      selectedDate: null, 
+      currentYear: new Date(this.initialDate.getTime() + (7 * 60 * 60 * 1000)).getFullYear(),
+      currentMonth: new Date(this.initialDate.getTime() + (7 * 60 * 60 * 1000)).getMonth(),
+      selectedDate: new Date(this.initialDate.getTime() + (7 * 60 * 60 * 1000)),
     };
   },
   computed: {
@@ -42,11 +57,11 @@ export default {
       return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     },
     dates() {
-      const start = new Date(this.currentYear, this.currentMonth, 1);
-      const end = new Date(this.currentYear, this.currentMonth + 1, 0);
+      const start = new Date(this.currentYear, this.currentMonth, 1, 7);
+      const end = new Date(this.currentYear, this.currentMonth + 1, 0, 7);
       const dates = [];
 
-      const prevMonthEnd = new Date(this.currentYear, this.currentMonth, 0);
+      const prevMonthEnd = new Date(this.currentYear, this.currentMonth, 0, 7);
       for (let i = start.getDay() - 1; i >= 0; i--) {
         dates.push({
           day: prevMonthEnd.getDate() - i,
@@ -75,7 +90,7 @@ export default {
   methods: {
     selectDate(date) {
       if (date.isCurrentMonth) {
-        this.selectedDate = new Date(this.currentYear, this.currentMonth, date.day);
+        this.selectedDate = new Date(this.currentYear, this.currentMonth, date.day, 7);
         this.$emit('dateSelected', this.selectedDate);
       }
     },
@@ -100,7 +115,8 @@ export default {
         this.selectedDate &&
         this.selectedDate.getDate() === date.day &&
         this.selectedDate.getMonth() === this.currentMonth &&
-        this.selectedDate.getFullYear() === this.currentYear
+        this.selectedDate.getFullYear() === this.currentYear &&
+        date.isCurrentMonth
       );
     },
   },
