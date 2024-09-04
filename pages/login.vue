@@ -42,7 +42,7 @@
           <label for="email" class="block mb-2 font-bold text-gray-600">Alamat Email</label>
           <input v-model="email" type="email" id="email" name="email" required placeholder="Masukkan email anda..." class="w-full p-2 border-b border-gray-300 focus:outline-none">
         </div>
-        <div class="input-group mb-4 text-left">
+       <div class="input-group mb-4 text-left">
           <label for="password" class="block mb-2 font-bold text-gray-600">Password</label>
           <input v-model="password" type="password" id="password" name="password" required placeholder="Masukkan password anda..." class="w-full p-2 border-b border-gray-300 focus:outline-none">
         </div>
@@ -141,32 +141,43 @@ export default {
   },
   methods: {
     async handleLogin() {
-      fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: this.email,
-          password: this.password
-        })
+  try {
+    const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.email,
+        password: this.password
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('token', data.token)
-          Swal.fire('Login Berhasil', 'Anda telah berhasil masuk.', 'success')
-            .then(() => {
-              this.$router.push('/')
-            })
-        } else {
-          Swal.fire('Login Gagal', data.message || 'Email atau password salah.', 'error')
-        }
-      })
-      .catch(() => {
-        Swal.fire('Kesalahan', 'Terjadi kesalahan jaringan. Silakan coba lagi nanti.', 'error')
-      })
-    },
+    });
+    const data = await response.json();
+
+    console.log('API Response:', data);
+
+    if (response.ok) {
+      if (data.result && data.result.session) {
+        // Simpan token
+        localStorage.setItem('token', data.result.session);
+
+        // Tampilkan alert dan arahkan pengguna
+        Swal.fire('Login Berhasil', 'Anda telah berhasil masuk.', 'success')
+          .then(() => {
+            this.$router.push('/'); // Arahkan pengguna ke halaman utama atau halaman yang sesuai
+          });
+      } else {
+        Swal.fire('Login Gagal', data.message || 'Email atau password salah.', 'error');
+      }
+    } else {
+      Swal.fire('Login Gagal', data.message || 'Email atau password salah.', 'error');
+    }
+  } catch (error) {
+    console.error('Login Error:', error);
+    Swal.fire('Kesalahan', 'Terjadi kesalahan jaringan. Silakan coba lagi nanti.', 'error');
+  }
+}
+,
     toggleCity() {
       this.showCity = !this.showCity; 
     },

@@ -202,23 +202,31 @@ export default {
     
     fetchUser(token) {
       fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(error => {
+            console.error('Error:', error);
+            throw new Error(error.message || 'Unknown error');
+          });
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.user) {
-          this.user = data.user
+          this.user = data.user;
         } else {
-          console.error('Gagal mengambil data pengguna:', data.message)
+          console.error('Gagal mengambil data pengguna:', data.message);
         }
       })
       .catch(error => {
-        console.error('Error fetching user:', error)
-        this.user = null
-      })
+        console.error('Error fetching user:', error);
+        this.user = null;
+      });
     },
 
     toggleDropdown() {
