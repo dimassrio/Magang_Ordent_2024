@@ -161,7 +161,27 @@ export default {
     };
   },
   methods: {
-    async fetch() {
+    async validateToken() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await axios.get('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          this.user = response.data; // Simpan data pengguna
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          localStorage.removeItem('token'); // Hapus token jika ada kesalahan
+          this.user = null; // Reset user
+        }
+      }
+    },
+    toggleUserMenu() {
+      this.showUserMenu = !this.showUserMenu;
+    },
+    async fetchEvents() {
       try {
         console.log('Fetching all events...');
         const response = await axios.get('https://event-api.ordent-global.workers.dev/api/event');
