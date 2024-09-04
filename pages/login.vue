@@ -4,10 +4,9 @@
       <div class="logo mb-4 md:mb-0">
         <NuxtLink to="/"><img src="/img/logoG.png" alt="GOERS" class="h-8"></NuxtLink>
       </div>
-
       <div class="header-right flex items-center">
-        <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
-        <NuxtLink to="/login"><button class="btn-masuk bg-green-500 text-white font-bold py-1 px-3 rounded">Masuk</button></NuxtLink>
+        <button class="btn-pengalaman bg-white font-bold py-2 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
+        <NuxtLink to="/register"><button class="btn-masuk bg-green-500 text-white hover:bg-green-700 transition-colors duration-400 font-bold py-2 px-3 rounded">Daftar</button></NuxtLink>
       </div>
     </header>
 
@@ -15,71 +14,42 @@
       <div class="flex flex-row justify-between w-full">
         <div class="nav-left flex flex-col md:flex-row">
           <div class="dropdown relative mb-4 md:mb-0">
-            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md w-full md:w-auto">Pilih Kota</button> 
-            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-md rounded mt-2 w-full md:w-auto"> 
+            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md w-full md:w-auto font-semibold">Pilih Kota</button> 
+            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-2xl rounded mt-2 w-full md:w-auto border-gray-100"> 
               <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
-              <a v-for="city in cities" :key="city" href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
+              <a href="#" v-for="city in cities" :key="city" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
             </div>
           </div>
           <div class="dropdown relative mb-4 md:mb-0 ml-3">
-            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md">Kategori</button> 
-            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-xl rounded-md mt-2 w-full">
-              <a v-for="category in categories" :key="category" href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ category }}</a>
+            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md font-semibold">Kategori</button> 
+            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-2xl rounded-md mt-2 w-full border-gray-100">
+              <a href="#" v-for="category in categories" :key="category" class="block px-4 py-2 text-black hover:bg-gray-200">{{ category }}</a>
             </div>
           </div>
         </div>
-        
         <div class="nav-right flex flex-col md:flex-row items-end">
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
-          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Blog</a>
+          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Tentang Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 md:mb-3 py-2 px-4 font-semibold">Kerjasama Dengan Kami</a>
         </div>
       </div>
     </nav>
 
     <div class="max-w-md mx-auto mt-1 p-4 bg-white rounded-lg text-blue-900">
-      <h2 class="text-2xl font-bold mb-2">Halo!
-        <br>Silahkan masukkan email Anda untuk masuk
-      </h2>
+      <h2 class="text-2xl font-bold mb-2">Masuk<br>Silakan masukkan email dan password Anda</h2>
       <form @submit.prevent="handleLogin">
-        <div class="mb-4">
-          <input v-model="email" type="email" id="email" name="email" required
-                 class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
-                 placeholder="Silakan masukkan alamat email anda...">
+        <div class="input-group mb-4 text-left">
+          <label for="email" class="block mb-2 font-bold text-gray-600">Alamat Email</label>
+          <input v-model="email" type="email" id="email" name="email" required placeholder="Masukkan email anda..." class="w-full p-2 border-b border-gray-300 focus:outline-none">
         </div>
-        <div class="mb-4">
-          <input v-model="password" type="password" id="password" name="password" required
-                 class="text-black px-1 py-2 w-full p-2 border-b border-gray-300 focus:outline-none"
-                 placeholder="Silakan masukkan Password anda...">
+        <div class="input-group mb-4 text-left">
+          <label for="password" class="block mb-2 font-bold text-gray-600">Password</label>
+          <input v-model="password" type="password" id="password" name="password" required placeholder="Masukkan password anda..." class="w-full p-2 border-b border-gray-300 focus:outline-none">
         </div>
-        <button id="submitButton" type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">
-          Lanjutkan
-        </button>
+        <button type="submit" class="w-full bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 font-bold">Masuk</button>
+        <p v-if="errorMessage" class="text-red-500 text-sm mt-2">{{ errorMessage }}</p>
+        <p class="text-sm text-gray-600 mb-2 text-center">Belum punya akun? <NuxtLink to="/register" class="text-green-400 font-bold mb-4">Klik disini</NuxtLink> untuk mendaftar!</p>
       </form>
-      
-      <div class="text-center my-4 font-bold">atau</div>
-      
-      <button @click="loginWithGoogle" class="w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300 mb-3 flex items-center justify-center">
-        <img src="/img/google.png" alt="Google" class="w-5 h-5 mr-2">
-        Lanjutkan dengan Google
-      </button>
-      
-      <button @click="loginWithApple" class="w-full bg-black text-white py-2 px-10 rounded-md hover:bg-gray-800 transition duration-300 mb-4 flex items-center justify-center">
-        <img src="/img/apple.png" alt="Apple" class="w-5 h-5 mr-2">
-        Lanjutkan dengan Apple
-      </button>
-
-      <div class="flex items-center mb-4">
-        <input v-model="rememberMe" type="checkbox" id="remember" name="remember" class="w-5 h-6 mr-2">
-        <label for="remember" class="text-sm text-gray-600">Ingat saya</label>
-      </div>
-      <p class="text-sm text text-gray-600 mb-2 text-center">Belum punya akun? <NuxtLink to="/register" class="text-green-400 font-bold mb-4">Klik disini</NuxtLink> untuk membuat akun!</p>
-      <p class="text-sm text-gray-600 mb-4 text-center">
-        Jika terjadi masalah, silakan kunjungi pusat bantuan kami
-      </p>
-      <button @click="goToHelpCenter" class="w-full bg-gray-100 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300 font-bold">
-        Pusat Bantuan
-      </button>
     </div>
 
     <footer class="bg-gray-100 p-8 border-t border-gray-200">
@@ -130,9 +100,9 @@
       </div>
       <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
             <div class="social-media flex mb-4 md:mb-0"> 
-                <a href="#" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
-                <a href="#" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
-                <a href="#" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
+                <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+                <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+                <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
             </div>
         <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
           <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
@@ -149,130 +119,85 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+
 export default {
-  middleware: 'admin',
   data() {
     return {
       email: '',
       password: '',
-      rememberMe: false,
-      showCategory: false,
       showCity: false,
+      showCategory: false,
+      errorMessage: '', 
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
-      menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
-      informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
-      bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
-      bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
+        menggunakanGoers: ['Penawaran Terbaik', 'Lokasi Terbaik', 'Promo', 'Pusat Bantuan', 'Kebijakan Privasi', 'Syarat dan Ketentuan'],
+        informasi: ['Menayangkan Event di Goers', 'Solusi Pemilik Venue', 'Unduh Brosur', 'Goers Experience Manager', 'Point of Sales', 'Ticket Scanner', 'Harga'],
+        bisnis: ['Solusi New Normal', 'Management Online Event', 'Venue & Event Olahraga', 'Taman Bertema', 'Tur & Wisata', 'Pameran', 'Konser & Musik', 'Seminar'],
+        bertemuGoers: ['Tentang Kami', 'Blog', 'Karir', 'Press Kit']
       },
-    }
+    };
   },
   methods: {
     async handleLogin() {
-      try {
-        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password
-          })
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.errors[0].message || 'Login failed');
+      fetch('https://event-api.ordent-global.workers.dev/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('token', data.token)
+          Swal.fire('Login Berhasil', 'Anda telah berhasil masuk.', 'success')
+            .then(() => {
+              this.$router.push('/')
+            })
+        } else {
+          Swal.fire('Login Gagal', data.message || 'Email atau password salah.', 'error')
         }
-
-        const data = await response.json();
-        console.log('Login berhasil:', data);
-
-        this.$router.push('/');
-      } catch (error) {
-        console.error('Error saat login:', error.message);
-      }
+      })
+      .catch(() => {
+        Swal.fire('Kesalahan', 'Terjadi kesalahan jaringan. Silakan coba lagi nanti.', 'error')
+      })
     },
-
-    async getUser() {
-      try {
-        const response = await fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.token}`
-          }
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Failed to get user');
-        }
-
-        const data = await response.json();
-        this.user = data.result;
-        console.log('User data:', data);
-      } catch (error) {
-        console.error('Error saat mendapatkan user:', error.message);
-      }
-    },
-
-    loginWithGoogle() {
-      console.log('Login dengan Google');
-    },
-    loginWithApple() {
-      console.log('Login dengan Apple');
-    },
-    goToHelpCenter() {
-      this.$router.push('/help-center');
+    toggleCity() {
+      this.showCity = !this.showCity; 
     },
     toggleCategory() {
-      this.showCategory = !this.showCategory;
-      this.showCity = false;
+      this.showCategory = !this.showCategory; 
     },
-    
-    toggleCity() {
-      this.showCity = !this.showCity;
-      this.showCategory = false;
-    },
-    
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.showCity = false;
-        this.showCategory = false;
-        this.searchResults = [];
+        this.showCity = false; 
+        this.showCategory = false; 
       }
-    },    
-
-    loginWithGoogle() {
-      console.log('Login dengan Google');
     },
-    loginWithApple() {
-      console.log('Login dengan Apple');
+    mounted() {
+      document.addEventListener('click', this.handleClickOutside);
     },
-    goToHelpCenter() {
-      this.$router.push('/help-center');
-    }
-  },
-  mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.handleClickOutside);
-  },
-  watch: {
-    searchQuery() {
-      this.performSearch();
-    }
-  }
+    beforeDestroy() {
+      document.removeEventListener('click', this.handleClickOutside);
+    },
+  }  
 };
 </script>
 
 <style scoped>
 .dropbtn {
-  width: 100px; 
+  width: 150px;
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.nav-right {
+  justify-content: space-between; 
 }
 
 .dropdown-content {

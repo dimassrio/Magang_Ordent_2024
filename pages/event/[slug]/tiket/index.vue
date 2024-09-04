@@ -8,38 +8,39 @@
         </div>
   
         <div class="header-right flex items-center">
-          <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
-          <nuxt-link to="/login">
-            <button class="btn-masuk bg-green-500 text-white font-bold py-1 px-3 rounded">Masuk</button>
-          </nuxt-link>
+          <button class="btn-pengalaman bg-white font-bold py-2 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
+        <nuxt-link to="/login">
+          <button class="btn-masuk bg-green-500 text-white hover:bg-green-700 transition-colors duration-400 font-bold py-2 px-3 rounded">Masuk</button>
+        </nuxt-link>
         </div>
       </header>
   
       <nav class="flex flex-col md:flex-row justify-between p-4 bg-white shadow mt-2 border-gray-200">
-        <div class="flex flex-row justify-between w-full">
-          <div class="nav-left flex flex-col md:flex-row">
-            <div class="dropdown relative mb-4 md:mb-0">
-              <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md w-full md:w-auto">Pilih Kota</button> 
-              <div v-if="showCity" class="dropdown-content absolute bg-white shadow-md rounded mt-2 w-full md:w-auto"> 
-                <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
-                <a href="#" v-for="city in cities" :key="city" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
-              </div>
-            </div>
-            <div class="dropdown relative mb-4 md:mb-0 ml-3">
-              <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md">Kategori</button> 
-              <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-xl rounded-md mt-2 w-full">
-                <a href="#" v-for="category in categories" :key="category" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ category }}</a>
-              </div>
+      <div class="flex flex-row justify-between w-full">
+        <div class="nav-left flex flex-col md:flex-row">
+          <div class="dropdown relative mb-4 md:mb-0">
+            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md w-full md:w-auto font-semibold">Pilih Kota</button> 
+            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-2xl rounded mt-2 w-full md:w-auto border-gray-100"> 
+              <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
+              <a href="#" v-for="city in cities" :key="city" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
             </div>
           </div>
-  
-          <div class="nav-right flex flex-col md:flex-row items-end">
-            <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
-            <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
-            <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
+          
+          <div class="dropdown relative mb-4 md:mb-0 ml-3">
+            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md font-semibold">Kategori</button> 
+            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-2xl rounded-md mt-2 w-full border-gray-100">
+              <a href="#" v-for="category in categories" :key="category" class="block px-4 py-2 text-black hover:bg-gray-200">{{ category }}</a>
+            </div>
           </div>
         </div>
-      </nav>
+
+        <div class="nav-right flex flex-col md:flex-row items-end">
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Blog</a>
+          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Tentang Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 md:mb-3 py-2 px-4 font-semibold">Kerjasama Dengan Kami</a>
+        </div>
+      </div>
+    </nav>
   
       <div class="container mx-auto p-4" v-if="event">
         <header class="flex justify-between items-center mb-4">
@@ -53,7 +54,7 @@
   
         <div class="flex flex-col md:flex-row">
           <div class="md:w-2/3 pr-4">
-            <img :src="getFirstImage(event.images)" alt="Event Image" class="rounded-lg w-full h-64 object-cover mb-4" />
+            <img :src="getFirstImage(event.images)" alt="Event Image" class="rounded-lg w-full h-48 object-cover mb-4" />
             <div class="text-gray-700">
               <h2 class="text-xl font-semibold">Tentang experience ini</h2>
               <p class="mt-2">{{ event.description }}</p>
@@ -72,7 +73,7 @@
       </div>
       <div v-else class="text-center p-4">Loading event details...</div>
   
-      <footer class="bg-gray-100 p-8 border-t border-gray-200">
+      <footer class="bg-gray-100 p-8 border-t border-gray-100">
         <div class="footer-container flex flex-col md:flex-row justify-around"> 
           <div class="footer-column mb-4 md:mb-0">
             <h3 class="text-lg font-bold mb-2">MENGGUNAKAN GOERS</h3>
@@ -208,9 +209,15 @@
   </script>
   
   <style scoped>
-  .dropbtn {
-    width: 100px; 
-  }
+.dropbtn {
+  width: 150px;
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.nav-right {
+  justify-content: space-between; 
+}
   
   .dropdown-content {
     width: 200px; 

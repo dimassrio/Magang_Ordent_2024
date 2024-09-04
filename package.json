@@ -18,6 +18,7 @@
     "mini-css-extract-plugin": "^2.9.0",
     "nuxt": "^3.12.4",
     "pinia": "^2.2.1",
+    "sweetalert2": "^11.6.13",
     "tailwindcss": "^3.4.10",
     "uuid": "^10.0.0",
     "vue": "^3.4.37"

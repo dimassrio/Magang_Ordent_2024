@@ -8,47 +8,53 @@
       </div>
 
       <div class="search-container relative w-full md:w-1/2 mb-4 md:mb-0">
-        <div class="search-bar items-center bg-gray-200 rounded-full">
-          <input class="bg-transparent w-full p-2 rounded-full" type="text" placeholder="Cari acara, taman rekreasi, dll..." v-model="searchQuery" @input="performSearch"/>
+        <div class="search-bar items-center bg-gray-200 rounded-lg">
+          <input class="bg-transparent w-full p-2 rounded-lg" type="text" placeholder="Cari acara, taman rekreasi, dll..." v-model="searchQuery" @input="performSearch"/>
           <i class="fas fa-search mr-2"></i>
         </div>
-
-                <!-- Rekomendasi pencarian dinonaktifkan
-        <div v-if="searchQuery && !searchConfirmed && searchResults.length > 0" class="search-results">
-          <div v-for="result in searchResults" :key="result.id" class="p-2 hover:bg-gray-100 cursor-pointer" @click="selectRecommendation(result)">{{ result.name }}</div>
-        </div> -->
       </div> 
 
       <div class="header-right flex items-center">
-        <button class="btn-pengalaman bg-white font-bold py-1 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
-        <nuxt-link to="/login">
-          <button class="btn-masuk bg-green-500 text-white font-bold py-1 px-3 rounded">Masuk</button>
-        </nuxt-link>
+        <button class="btn-pengalaman bg-white font-bold py-2 px-4 rounded-md mr-2 hover:bg-teal-200 transition-colors duration-400 text-green-700">Buat Pengalaman</button>
+        
+        <div v-if="user">
+        <button @click="toggleDropdown">{{ user.username }}</button>
+        <div v-if="dropdownOpen" class="dropdown-user">
+          <!-- Dropdown Content -->
+          <a href="#">Profil</a>
+          <a @click="logout">Logout</a>
+        </div>
+      </div>
+      <div v-else>
+        <NuxtLink to="/login" class="btn-masuk bg-green-500 text-white hover:bg-green-700 transition-colors duration-400 font-bold py-2 px-3 rounded">Masuk</NuxtLink>
+      </div>
       </div>
     </header>
+
 
     <nav class="flex flex-col md:flex-row justify-between p-4 bg-white shadow mt-2 border-gray-200">
       <div class="flex flex-row justify-between w-full">
         <div class="nav-left flex flex-col md:flex-row">
           <div class="dropdown relative mb-4 md:mb-0">
-            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md w-full md:w-auto">Pilih Kota</button> 
-            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-md rounded mt-2 w-full md:w-auto"> 
+            <button @click="toggleCity" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md w-full md:w-auto font-semibold">Pilih Kota</button> 
+            <div v-if="showCity" class="dropdown-content absolute bg-white shadow-2xl rounded mt-2 w-full md:w-auto border-gray-100"> 
               <input type="text" placeholder="Cari nama kota" class="w-full p-2 border-b"/>
               <a href="#" v-for="city in cities" :key="city" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">{{ city }}</a>
             </div>
           </div>
+          
           <div class="dropdown relative mb-4 md:mb-0 ml-3">
-            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-gray-800 py-2 px-4 rounded-md">Kategori</button> 
-            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-xl rounded-md mt-2 w-full">
-              <a href="#" v-for="category in categories" :key="category" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ category }}</a>
+            <button @click="toggleCategory" class="dropbtn bg-white hover:bg-gray-100 transition-colors duration-400 text-black py-2 px-4 rounded-md font-semibold">Kategori</button> 
+            <div v-if="showCategory" class="dropdown-content absolute bg-white shadow-2xl rounded-md mt-2 w-full border-gray-100">
+              <a href="#" v-for="category in categories" :key="category" class="block px-4 py-2 text-black hover:bg-gray-200">{{ category }}</a>
             </div>
           </div>
         </div>
 
         <div class="nav-right flex flex-col md:flex-row items-end">
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Blog</a>
-          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4">Tentang Kami</a>
-          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-gray-800 ml-0 md:ml-4 md:mb-3 py-2 px-4">Kerjasama Dengan Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Blog</a>
+          <a href="/about-us" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 mb-4 md:mb-3 py-2 px-4 font-semibold">Tentang Kami</a>
+          <a href="#" class="bg-white hover:bg-gray-100 transition-colors duration-400 rounded-md text-black ml-0 md:ml-4 md:mb-3 py-2 px-4 font-semibold">Kerjasama Dengan Kami</a>
         </div>
       </div>
     </nav>
@@ -62,11 +68,14 @@
       <section class="events p-4 bg-white mt-4">
         <div class="section-header flex justify-between items-center mb-4">
           <h2 class="text-xl font-bold">Best Offer</h2>
+          <NuxtLink to="#">
+            <button class="view-all bg-teal-100 text-green-900 py-2 px-4 rounded-full hover:bg-green-500 transition-colors duration-400 font-bold">Lihat Semua</button>
+          </NuxtLink>
         </div>
         
         <div v-if="loading" class="loading-spinner">Loading...</div>
         
-        <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-center">
+        <div v-else class="event-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 justify-center">
           <nuxt-link v-for="event in (searchConfirmed ? searchResults : events)" :key="event.id" @click="goToEvent(event.slug)">
             <img :src="getFirstImage(event.images)" :alt="event.name" class="rounded-lg" />
             <h3 class="text-lg mt-2 px-2">{{ event.name }}</h3>
@@ -124,19 +133,27 @@
         </div>
       </div>
       <div class="footer-bottom flex flex-col md:flex-row justify-center items-center py-4"> 
-        <div class="social-media flex mb-4 md:mb-0"> 
-          <a href="#" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
-          <a href="#" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
-          <a href="#"><img src="/img/x.png" alt="Twitter"></a>
-        </div> 
-        <p class="text-gray-600">&copy; 2024 GOERS. All rights reserved.</p>
+            <div class="social-media flex mb-4 md:mb-0"> 
+                <a href="event.html" class="mr-4"><img src="/img/ig.png" alt="Instagram"></a>
+                <a href="event.html" class="mr-4"><img src="/img/fb.png" alt="Facebook"></a>
+                <a href="event.html" class="mr-4"><img src="/img/x.png" alt="Twitter"></a>
+            </div>
+        <div class="newsletter flex flex-col md:flex-row items-center ml-0 md:ml-8"> 
+          <p class="mr-2">Dapatkan kabar terakhir dari kami</p>
+          <input type="email" placeholder="Alamat email" class="p-2 border rounded mr-2">
+          <button class="p-2 border rounded bg-teal-200 hover:bg-green-500 transition-colors duration-400 text-white font-bold gap-4">Berlangganan</button>
+        </div>
+      </div>
+      <div class="footer-credits text-center py-4 border-t border-gray-200 mt-4">
+        <p>Goers © 2021. All Rights Reserved.</p>
+        <p class="text-gray-600">Version 4.6.0</p>
       </div>
     </footer>
   </div>
 </template>
 
-
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 export default {
@@ -147,9 +164,13 @@ export default {
       searchQuery: '', 
       searchResults: [], 
       events: [], 
+      user: null,
       loading: true, 
       isSearching: false,
       searchConfirmed: false, 
+      isLoggedIn: false,
+      username: '',
+      dropdownOpen: false,
       cities: ['Ambon', 'Bali', 'Balikpapan', 'Bandung', 'Banjarbaru - Banjarmasin', 'Batam', 'Bekasi', 'Bima', 'Blitar', 'Cirebon', 'Depok', 'Flores'],
       categories: ['Edukasi & Karier', 'Hiburan & Pertunjukan', 'Travel & Outdoor', 'Amal', 'Olahraga', 'Tempat Wisata', 'Belanja', 'Seni & Belanja'],
       footerLinks: {
@@ -161,26 +182,6 @@ export default {
     };
   },
   methods: {
-    async validateToken() {
-      const token = localStorage.getItem('token');
-      if (token) {
-        try {
-          const response = await axios.get('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          this.user = response.data; // Simpan data pengguna
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-          localStorage.removeItem('token'); // Hapus token jika ada kesalahan
-          this.user = null; // Reset user
-        }
-      }
-    },
-    toggleUserMenu() {
-      this.showUserMenu = !this.showUserMenu;
-    },
     async fetchEvents() {
       try {
         console.log('Fetching all events...');
@@ -199,6 +200,31 @@ export default {
       }
     },
     
+    fetchUser(token) {
+      fetch('https://event-api.ordent-global.workers.dev/api/auth/getuser', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.user) {
+          this.user = data.user
+        } else {
+          console.error('Gagal mengambil data pengguna:', data.message)
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user:', error)
+        this.user = null
+      })
+    },
+
+    toggleDropdown() {
+      this.dropdownOpen = !this.dropdownOpen
+    },
+
     async searchEvents() {
       try {
         console.log('Searching for:', this.searchQuery);
@@ -266,6 +292,13 @@ export default {
 
     goToEvent(slug) {
       this.$router.push(`/event/${slug}/tiket`);
+    },
+
+    logout() {
+      localStorage.removeItem('token')
+      this.user = null
+      location.reload()
+      this.$router.push('/login'); 
     }
   },
 
@@ -277,8 +310,12 @@ export default {
     }
   },
 
-  mounted() {
-    this.fetch();
+  async mounted() {
+    const token = localStorage.getItem('token')
+    if (token) {
+      this.fetchUser(token)
+    }
+    await this.fetchEvents(); 
     document.addEventListener('click', this.handleClickOutside);
   },
 
@@ -288,11 +325,15 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 .dropbtn {
-  width: 100px; 
+  width: 150px;
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.nav-right {
+  justify-content: space-between; 
 }
 
 .dropdown-content {
@@ -307,7 +348,6 @@ export default {
 }
 
 .dropdown-content a {
-  display: flex;
   align-items: center;
   padding: 8px 16px; 
 }
@@ -316,6 +356,28 @@ export default {
   background-color: #f1f1f1; 
 }
 
+.dropdown-user {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 150px;
+}
+
+.dropdown-user a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-user a:hover {
+  background-color: #f0f0f0;
+}
+
+
 .event-list a {
   cursor: pointer; 
 }
@@ -323,7 +385,6 @@ export default {
 .event-list img {
   pointer-events: none; 
 }
-
 
 .event-card {
   position: relative;
