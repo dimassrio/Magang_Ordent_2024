@@ -3,8 +3,8 @@
     <header class="flex justify-between items-center mb-4">
       <h2 class="text-lg font-semibold">{{ currentMonthName }} {{ currentYear }}</h2>
       <div class="flex items-center">
-        <button @click="prevMonth" class="bg-gray-200 p-2 rounded hover:bg-gray-300 transition-colors duration-400">Prev</button>
-        <button @click="nextMonth" class="bg-gray-200 p-2 rounded hover:bg-gray-300 ml-2 transition-colors duration-400">Next</button>
+        <button @click="prevMonth" class="bg-gray-200 p-2 rounded hover:bg-gray-300 transition duration-300 ease-in-out transform hover:scale-105 duration-400">Prev</button>
+        <button @click="nextMonth" class="bg-gray-200 p-2 rounded hover:bg-gray-300 ml-2 transition duration-300 ease-in-out transform hover:scale-105 duration-400">Next</button>
       </div>
     </header>
 
@@ -18,18 +18,13 @@
       <div
         v-for="(date, index) in dates"
         :key="index"
-        class="date p-3 cursor-pointer rounded-full hover:bg-blue-200"
-        @click="selectDate(date)"
-        :class="{
-          'bg-blue-500 text-white': isSelected(date),
-          'text-gray-400': !date.isCurrentMonth
-        }"
-      >
+        class="date p-3 cursor-pointer rounded-full hover:bg-blue-200 transition duration-300 ease-in-out transform hover:scale-105 duration-400"@click="selectDate(date)"
+        :class="{'bg-blue-500 text-white': isSelected(date),'text-gray-400': !date.isCurrentMonth}">
         {{ date.day }}
       </div>
     </div>
     <div class="footer mt-4 text-right">
-      <button @click="$emit('close')" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors duration-400">Tutup</button>
+      <button @click="$emit('close')" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105 duration-400">Tutup</button>
     </div>
   </div>
 </template>
